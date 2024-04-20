@@ -18,7 +18,7 @@ void put_image(s_data *game)
     {
         j = 0;
         while(game->map[i][j])
-        {
+        { 
             if (game->map[i][j] == '1')
             {
                 mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, image.wall_ptr,j*37,i*37);
@@ -28,6 +28,8 @@ void put_image(s_data *game)
                   mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, image.player_ptr,j*37 ,i*37);
                //  mlx_destroy_image(game->mlx_ptr, image.player_ptr);
             }
+            else if (game->map[i][j] == 'D')
+                 mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, image.ennemi_ptr,j*37 ,i*37);
             j++;
         }
         i++;
