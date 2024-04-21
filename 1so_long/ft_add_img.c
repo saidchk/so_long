@@ -46,6 +46,6 @@ void ft_add_img(s_data *game)
 
     i =0;
   
-    get_map(game);
+   // get_map(game);
     put_image(game);
 }

@@ -6,7 +6,7 @@
 /*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/04/18 19:16:35 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:40:20 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,15 @@ void get_next_line(int fd, s_data *game) {
     }
     tab[size_read] = 0; 
     int i = 0;
+    game->weight_map = ft_strlen(tab);
     while (i < game->map_len)
     {
         size_line = ft_strlen(tab);
-        //printf("%s\n\n",tab);
+        if (game->weight_map != size_line || game->map_len == size_line)
+        {
+            write (1, "the map is not rectangular", 26);
+            exit(EXIT_FAILURE);
+        }
         game->map[i] = one_line(tab, size_line);
         tab += size_line + 1;
         i++;

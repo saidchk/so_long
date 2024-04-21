@@ -18,7 +18,7 @@ void get_map(s_data *game)
     int fd;
     int i = 0;
  
-    fd = open("map.bar",O_RDONLY);
+    fd = open("map.ber",O_RDONLY);
     game->map_len = count_len(fd);
     close(fd);
     game->map = malloc( sizeof(char *) * (game->map_len + 1));
@@ -29,7 +29,7 @@ void get_map(s_data *game)
     {
         return ;
     }
-    fd = open("map.bar",O_RDONLY);
+    fd = open("map.ber",O_RDONLY);
     get_next_line(fd, game);
 
 }

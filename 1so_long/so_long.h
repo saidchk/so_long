@@ -15,12 +15,22 @@ typedef struct img_addr
 
 }s_img_adrr;
 
+typedef struct 
+{
+	int number_of_collectibles ;
+    int number_of_players ;
+    int number_of_exit;
+	int x;
+    int y;
+}num_of_composed;
+
 typedef struct data
 {
     void    *mlx_ptr;
     void    *window_ptr;
     char    **map;    
     int     map_len;
+	int		weight_map;
 }s_data;
 
 /* Color codes for printf  */
@@ -42,5 +52,6 @@ void move_up(s_data *game);
 void move_down(s_data *game);
 void move_right(s_data *game);
 void move_left(s_data *game);
+void check_map(char *file_name, s_data *game);
 
 #endif
