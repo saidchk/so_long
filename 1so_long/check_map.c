@@ -1,5 +1,6 @@
 #include "so_long.h"
 
+num_of_composed size;
 void    ft_check_extension(char *file_name)
 {
     int     i;
@@ -51,9 +52,9 @@ void ft_is_closed(s_data *game)
         y++;
     }
 }
+#include <stdio.h>
 void check_p_e_c(s_data *game, int *x, int *y)
 {
-	num_of_composed size;
 
     size.number_of_collectibles = 0;
     size.number_of_players = 0;
@@ -83,20 +84,47 @@ void check_p_e_c(s_data *game, int *x, int *y)
 	if (size.number_of_collectibles < 1 || size.number_of_exit != 1 || size.number_of_players != 1)
 		 exit(EXIT_FAILURE);	
 }
-void  flood_fill(s_data *game ,int x, int y)
+
+void  flood_fill(char **map ,s_data game,int x, int y, int *count_c)
 {
-    if (game->map[y][x] != 'c' || game->map[y][x] != 'p' || game->map[y][x] == 0 || y > game->map_len)
-        return ;
+    if ((y < 0 || y >= game.map_len )|| (x < 0 || x >= game.weight_map ) || map[y][x] == 'k')
+        return;
+    
+    if (map[y][x] != 'c' && map[y][x] != 'p' )
+    {
+        return;
+    }
+    else
+    {
+        if (map[y][x] == 'c')
+            (*count_c)++;
+        map[y][x] = 'k';
+        flood_fill(map, game,x + 1, y,count_c);
+        flood_fill(map, game,x - 1, y,count_c);
+        flood_fill(map, game,x, y + 1, count_c);
+        flood_fill(map, game,x, y - 1, count_c);
+    }
 }
 void check_map(char *file_name, s_data *game)
 {
     int x;
     int y;
+    int count_c;
+    char **map;
 
+    count_c = 0;
     ft_check_extension(file_name);
     get_map(game);
+    map = game->map;
     ft_is_closed(game);
     check_p_e_c(game, &x, &y);
-    flood_fill(game , x, y);
+    flood_fill(map , *game, x, y, &count_c);
+    printf("---%s---\n", game->map[1]);
+    if (count_c != size.number_of_collectibles)
+    {
+        write (1, "not valide path\n", 16);
+        //mlx_destr
+        exit(EXIT_FAILURE);
+    }
 
 }
