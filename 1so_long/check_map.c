@@ -51,7 +51,7 @@ void ft_is_closed(s_data *game)
         y++;
     }
 }
-void check_p_e_c(s_data *game)
+void check_p_e_c(s_data *game, int *x, int *y)
 {
 	num_of_composed size;
 
@@ -67,7 +67,11 @@ void check_p_e_c(s_data *game)
 			if (game->map[size.y][size.x] == 'c')
 				size.number_of_collectibles++;
 			else if(game->map[size.y][size.x] == 'p')
+            {
 				size.number_of_players++;
+                *x = size.x;
+                *y = size.y;
+            }
 			else if(game->map[size.y][size.x] == 'E')
 				size.number_of_exit++;
 			size.x++;
@@ -79,15 +83,20 @@ void check_p_e_c(s_data *game)
 	if (size.number_of_collectibles < 1 || size.number_of_exit != 1 || size.number_of_players != 1)
 		 exit(EXIT_FAILURE);	
 }
-void  flood_fill(s_data *game)
+void  flood_fill(s_data *game ,int x, int y)
 {
-    
+    if (game->map[y][x] != 'c' || game->map[y][x] != 'p' || game->map[y][x] == 0 || y > game->map_len)
+        return ;
 }
 void check_map(char *file_name, s_data *game)
 {
+    int x;
+    int y;
+
     ft_check_extension(file_name);
     get_map(game);
     ft_is_closed(game);
-    check_p_e_c(game);
+    check_p_e_c(game, &x, &y);
+    flood_fill(game , x, y);
 
 }
