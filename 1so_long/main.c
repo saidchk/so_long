@@ -10,9 +10,7 @@ int key_press(int keycode, void *param)
 	game = (s_data *)(param);
 	if (keycode == 53)
 	{
-		
 		mlx_destroy_window(game->mlx_ptr,game->window_ptr);
-		//free(game->mlx_ptr);
 		//ft_free(game);
 		exit(EXIT_SUCCESS);
 	}
@@ -25,7 +23,7 @@ int key_press(int keycode, void *param)
 	else if (keycode == 2 || keycode == 124)
 		move_right(game);	
 	mlx_clear_window(game->mlx_ptr, game->window_ptr);
-	put_image(game);
+	put_image(game,keycode);
 
     return (0);
 }
@@ -48,7 +46,7 @@ int main(int ac, char **av)
 		return(1);
 	ft_add_img(&game);
 	//mlx_loop_hook(game.mlx_ptr,put_image , &game);
-	mlx_key_hook(game.window_ptr, key_press, &game);
+	mlx_hook(game.window_ptr, 2, 1L<<0, key_press, &game);
 	mlx_loop(game.mlx_ptr);
 
 }

@@ -47,7 +47,7 @@ typedef struct data
 void get_next_line(int fd, s_data *game);
 void ft_add_img(s_data *game);
 void get_map(s_data *game);
-void put_image(s_data *game);
+void put_image(s_data *game, int keycode);
 void move_up(s_data *game);
 void move_down(s_data *game);
 void move_right(s_data *game);

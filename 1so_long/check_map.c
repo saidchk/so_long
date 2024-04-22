@@ -52,7 +52,6 @@ void ft_is_closed(s_data *game)
         y++;
     }
 }
-#include <stdio.h>
 void check_p_e_c(s_data *game, int *x, int *y)
 {
 
@@ -85,24 +84,31 @@ void check_p_e_c(s_data *game, int *x, int *y)
 		 exit(EXIT_FAILURE);	
 }
 
-void  flood_fill(char **map ,s_data game,int x, int y, int *count_c)
+void  flood_fill(s_data game,int x, int y, int *count_c, int *count_exit)
 {
-    if ((y < 0 || y >= game.map_len )|| (x < 0 || x >= game.weight_map ) || map[y][x] == 'k')
+    if ((y < 0 || y >= game.map_len )|| (x < 0 || x >= game.weight_map ) || game.map[y][x] == 'k' || game.map[y][x] == '.' || game.map[y][x] == 'e')
         return;
-    
-    if (map[y][x] != 'c' && map[y][x] != 'p' )
-    {
+
+    if (game.map[y][x] != '0' && game.map[y][x] != 'c'&& game.map[y][x] != 'p' && game.map[y][x] != 'E')
         return;
-    }
     else
     {
-        if (map[y][x] == 'c')
+        if (game.map[y][x] == 'c')
+        {
+            game.map[y][x] = '.';
             (*count_c)++;
-        map[y][x] = 'k';
-        flood_fill(map, game,x + 1, y,count_c);
-        flood_fill(map, game,x - 1, y,count_c);
-        flood_fill(map, game,x, y + 1, count_c);
-        flood_fill(map, game,x, y - 1, count_c);
+        }
+        else if(game.map[y][x] == 'E')
+        {
+            game.map[y][x] = 'e';
+           (*count_exit)++;
+        }
+        else
+            game.map[y][x] = 'k';
+        flood_fill(game,x + 1, y,count_c, count_exit);
+        flood_fill(game,x - 1, y,count_c, count_exit);
+        flood_fill(game,x, y + 1, count_c, count_exit);
+        flood_fill(game,x, y - 1, count_c, count_exit);
     }
 }
 void check_map(char *file_name, s_data *game)
@@ -110,20 +116,19 @@ void check_map(char *file_name, s_data *game)
     int x;
     int y;
     int count_c;
-    char **map;
+    int count_exit;
 
     count_c = 0;
+    count_exit = 0;
     ft_check_extension(file_name);
     get_map(game);
-    map = game->map;
     ft_is_closed(game);
     check_p_e_c(game, &x, &y);
-    flood_fill(map , *game, x, y, &count_c);
-    printf("---%s---\n", game->map[1]);
-    if (count_c != size.number_of_collectibles)
+    flood_fill(*game, x, y, &count_c, &count_exit);
+    game->map[y][x] = 'p';
+    if (count_c != size.number_of_collectibles || count_exit != size.number_of_exit)
     {
         write (1, "not valide path\n", 16);
-        //mlx_destr
         exit(EXIT_FAILURE);
     }
 
