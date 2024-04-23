@@ -41,6 +41,7 @@ void ft_is_closed(s_data *game)
             if (game->map[y][x] != '1')
                 {
                     write (1, "close the map\n", 14);
+                    ft_free(game);
                     exit(EXIT_FAILURE);
                 }
 
@@ -79,9 +80,11 @@ void check_p_e_c(s_data *game, int *x, int *y)
 		size.y++;
     }
 	if (size.number_of_collectibles < 1 || size.number_of_exit != 1 || size.number_of_players != 1)
-			write(1,"error in composed\n",18) ;	
-	if (size.number_of_collectibles < 1 || size.number_of_exit != 1 || size.number_of_players != 1)
-		 exit(EXIT_FAILURE);	
+	{
+        write(1,"error in composed\n",18);
+        ft_free(game);
+        exit(EXIT_FAILURE);
+    }	
 }
 
 void  flood_fill(s_data game,int x, int y, int *count_c, int *count_exit)
@@ -129,6 +132,7 @@ void check_map(char *file_name, s_data *game)
     if (count_c != size.number_of_collectibles || count_exit != size.number_of_exit)
     {
         write (1, "not valide path\n", 16);
+        ft_free(game);
         exit(EXIT_FAILURE);
     }
 

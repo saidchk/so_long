@@ -1,33 +1,36 @@
 #include "minilibx/mlx.h"
 #include "so_long.h"
 
-void function(s_img_adrr image, s_data *game, int keycode)
+void function(s_img_adrr *image, s_data *game, int keycode)
 {
     int w;
     int h;
-
-    image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"wa.xpm",&w,&h);
+    
+    image->wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"wa.xpm",&w,&h);
     if (keycode == 0 || keycode == 123)
-        image.player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_semi_left.xpm",&w,&h);
+        image->player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_semi_left.xpm",&w,&h);
     else if (keycode == 2 || keycode == 124)
-        image.player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_semi_right.xpm",&w,&h);
+        image->player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_semi_right.xpm",&w,&h);
     else if(keycode == 13 || keycode == 126 )
-		move_up(game);
+		image->player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_open_up.xpm",&w,&h);
 	else if (keycode == 1 || keycode == 125)
-		move_down(game);
-    image.ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"ghost_down2.xpm",&w,&h);
-    image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"collectible.xpm",&w,&h);
+		image->player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_semi_down.xpm",&w,&h);
+    else if(keycode == 30000)
+         image->player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"pac_closed.xpm",&w,&h);  
+
+    image->ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"ghost_down2.xpm",&w,&h);
+    image->collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,"collectible.xpm",&w,&h);
 }
 
 void put_image(s_data *game, int keycode)
 {
 
+  static s_img_adrr image;
   int i;
   int j;
-  s_img_adrr image;
 
   i = 0;
-  function(image, game, keycode);
+  function(&image, game, keycode);
   while(game->map[i])
     {
         j = 0;
@@ -47,7 +50,6 @@ void put_image(s_data *game, int keycode)
     }
 }
 
-
 void ft_add_img(s_data *game)
 {
     int w;
@@ -57,7 +59,6 @@ void ft_add_img(s_data *game)
     int keycode; 
 
     i =0;
-    keycode = 15;
-   // get_map(game);
+    keycode = 30000;
     put_image(game, keycode);
 }

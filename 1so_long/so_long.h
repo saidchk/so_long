@@ -31,18 +31,19 @@ typedef struct data
     char    **map;    
     int     map_len;
 	int		weight_map;
+	int		number_moves;
 }s_data;
 
-/* Color codes for printf  */
-# define DEFAULT "\033[0;39m"
-# define GRAY "\033[0;90m"
-# define RED "\033[0;91m"
-# define GREEN "\033[0;92m"
-# define YELLOW "\033[0;93m"
-# define BLUE "\033[0;94m"
-# define MAGENTA "\033[0;95m"
-# define CYAN "\033[0;96m"
-# define WHITE "\033[0;97m"
+// /* Color codes for printf  */
+// # define DEFAULT "\033[0;39m"
+// # define GRAY "\033[0;90m"
+// # define RED "\033[0;91m"
+// # define GREEN "\033[0;92m"
+// # define YELLOW "\033[0;93m"
+// # define BLUE "\033[0;94m"
+// # define MAGENTA "\033[0;95m"
+// # define CYAN "\033[0;96m"
+// # define WHITE "\033[0;97m"
 
 void get_next_line(int fd, s_data *game);
 void ft_add_img(s_data *game);
@@ -53,5 +54,6 @@ void move_down(s_data *game);
 void move_right(s_data *game);
 void move_left(s_data *game);
 void check_map(char *file_name, s_data *game);
+void ft_free(s_data *game);
 
 #endif
