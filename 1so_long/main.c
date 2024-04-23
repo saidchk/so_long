@@ -15,6 +15,8 @@ int animation(s_data *game)
 	mlx_clear_window(game->mlx_ptr, game->window_ptr);
 	put_image(game,30000);
 	func();
+	//mlx_loop_hook(game->mlx_ptr, animation, game);
+
 	return (0);
 }
 int key_press(int keycode, void *param)
@@ -37,6 +39,7 @@ int key_press(int keycode, void *param)
 		move_left(game);
 	else if (keycode == 2 || keycode == 124)
 		move_right(game);	
+	animation(game);
 	mlx_clear_window(game->mlx_ptr, game->window_ptr);
 	put_image(game,keycode);
 
@@ -46,6 +49,7 @@ int key_press(int keycode, void *param)
 int main(int ac, char **av)
 {
 	s_data	game;
+
 
 	if (ac != 2)
 	{

@@ -32,6 +32,8 @@ typedef struct data
     int     map_len;
 	int		weight_map;
 	int		number_moves;
+	int		x;
+	int		y;
 }s_data;
 
 // /* Color codes for printf  */

@@ -21,113 +21,60 @@ void put_number(int num)
 
 void move_up(s_data *game)
 {
-	int i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j =0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'p' && game->map[i - 1][j] == '1')
+	if (game->map[game->y][game->x] == 'p' && game->map[game->y - 1][game->x] == '1')
 				return ;
-			else if (game->map[i][j] == 'p' && game->map[i - 1][j] != '1')
-			{
-				game->map[i][j] = '0';
-				game->map[i - 1][j] = 'p';
+	else if (game->map[game->y][game->x] == 'p')
+	{
+				game->map[game->y][game->x] = '0';
+				game->map[game->y - 1][game->x] = 'p';
 				game->number_moves++;
+				game->y--;
 				put_number(game->number_moves);
 				write (1, "\n", 1);
-				return;
-			}
-
-			j++;
-		}
-		i++;
 	}
 }
 void move_down(s_data *game)
 {
-	int i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j =0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'p' && game->map[i + 1][j] == '1')
+	if (game->map[game->y][game->x] == 'p' && game->map[game->y + 1][game->x] == '1')
 				return ;
-			else if (game->map[i][j] == 'p' && game->map[i + 1][j] != '1')
-			{
-				game->map[i][j] = '0';
-				game->map[i + 1][j] = 'p';
+	else if (game->map[game->y][game->x] == 'p')
+	{
+				game->map[game->y][game->x] = '0';
+				game->map[game->y + 1][game->x] = 'p';
 				game->number_moves++;
+				game->y++;
 				put_number(game->number_moves);
 				write (1, "\n", 1);
-				return;
-			}
-
-			j++;
-		}
-		i++;
 	}
 }
 void move_left(s_data *game)
 {
-	int i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j =0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'p' && game->map[i][j - 1] == '1')
+	if (game->map[game->y][game->x] == 'p' && game->map[game->y][game->x - 1] == '1')
 				return ;
-			else if (game->map[i][j] == 'p' && game->map[i][j - 1] != '1')
-			{
-				game->map[i][j] = '0';
-				game->map[i][j - 1] = 'p';
+	else if (game->map[game->y][game->x] == 'p')
+	{
+				game->map[game->y][game->x] = '0';
+				game->map[game->y][game->x - 1] = 'p';
 				game->number_moves++;
+				game->x--;
 				put_number(game->number_moves);
 				write (1, "\n", 1);
-				return;
-			}
-
-			j++;
-		}
-		i++;
 	}
 }
 void move_right(s_data *game)
 {
-	int i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j =0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'p' && game->map[i][j + 1] == '1')
+	
+		
+			if (game->map[game->y][game->x] == 'p' && game->map[game->y][game->x + 1] == '1')
 				return ;
-			else if (game->map[i][j] == 'p' && game->map[i][j + 1] != '1')
+			else if (game->map[game->y][game->x] == 'p')
 			{
-				game->map[i][j] = '0';
-				game->map[i][j + 1] = 'p';
+				game->map[game->y][game->x] = '0';
+				game->map[game->y][game->x + 1] = 'p';
 				game->number_moves++;
+				game->x++;
 				put_number(game->number_moves);
 				write (1, "\n", 1);
-				return;
 			}
 
-			j++;
-		}
-		i++;
-	}
 }

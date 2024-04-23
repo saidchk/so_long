@@ -53,7 +53,7 @@ void ft_is_closed(s_data *game)
         y++;
     }
 }
-void check_p_e_c(s_data *game, int *x, int *y)
+void check_p_e_c(s_data *game)
 {
 
     size.number_of_collectibles = 0;
@@ -70,8 +70,8 @@ void check_p_e_c(s_data *game, int *x, int *y)
 			else if(game->map[size.y][size.x] == 'p')
             {
 				size.number_of_players++;
-                *x = size.x;
-                *y = size.y;
+                game->x = size.x;
+                game->y = size.y;
             }
 			else if(game->map[size.y][size.x] == 'E')
 				size.number_of_exit++;
@@ -116,8 +116,6 @@ void  flood_fill(s_data game,int x, int y, int *count_c, int *count_exit)
 }
 void check_map(char *file_name, s_data *game)
 {
-    int x;
-    int y;
     int count_c;
     int count_exit;
 
@@ -126,9 +124,9 @@ void check_map(char *file_name, s_data *game)
     ft_check_extension(file_name);
     get_map(game);
     ft_is_closed(game);
-    check_p_e_c(game, &x, &y);
-    flood_fill(*game, x, y, &count_c, &count_exit);
-    game->map[y][x] = 'p';
+    check_p_e_c(game);
+    flood_fill(*game,game->x, game->y, &count_c, &count_exit);
+    game->map[game->y][game->x] = 'p';
     if (count_c != size.number_of_collectibles || count_exit != size.number_of_exit)
     {
         write (1, "not valide path\n", 16);
