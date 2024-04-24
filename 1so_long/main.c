@@ -1,37 +1,32 @@
 #include "minilibx/mlx.h"
 #include "so_long.h"
-#include <stdio.h>
 
-void func()
+
+void ft_wait()
 {
-	int i = 0;
+	int i;
 
-	while(i < 5000000)
-		i++;
-}
+	i = 0;
 
-int animation(s_data *game)
-{
-	mlx_clear_window(game->mlx_ptr, game->window_ptr);
-	put_image(game,30000);
-	func();
-	//mlx_loop_hook(game->mlx_ptr, animation, game);
-
-	return (0);
+	while (i < 50800000)
+	{
+        i++;
+	}
 }
 int key_press(int keycode, void *param)
 {
 	s_data *game;
-
+	
 	game = (s_data *)(param);
+	game->keycode = keycode;
 	if (keycode == 53)
 	{
 		mlx_destroy_window(game->mlx_ptr,game->window_ptr);
 		ft_free(game);
-		exit(EXIT_SUCCESS);
+		exit(1);
 	}
 	
-	else if(keycode == 13 || keycode == 126 )
+	else if(keycode == 13 || keycode == 126)
 		move_up(game);
 	else if (keycode == 1 || keycode == 125)
 		move_down(game);
@@ -39,11 +34,25 @@ int key_press(int keycode, void *param)
 		move_left(game);
 	else if (keycode == 2 || keycode == 124)
 		move_right(game);	
-	animation(game);
-	mlx_clear_window(game->mlx_ptr, game->window_ptr);
-	put_image(game,keycode);
+	//put_pacman(game, keycode);
 
     return (0);
+}
+
+
+int animation(s_data *game)
+{
+	//printf("keycode --- %i\n", game->keycode);
+	mlx_hook(game->window_ptr, 2, 1L<<0, key_press, game);
+	 ///put_pacman(game,game->keycode);
+	//ft_wait();
+		//ft_i(game, game->keycode);
+	//	ft_wait();
+	 put_pacman(game, game->keycode);
+	// 	ft_wait();
+	
+	
+	return (0);
 }
 
 int main(int ac, char **av)
@@ -71,8 +80,9 @@ int main(int ac, char **av)
 		return(1);
 	}
 	ft_add_img(&game);
+	
+	//mlx_hook(game.window_ptr, 2, 1L<<0, key_press, &game);
 	mlx_loop_hook(game.mlx_ptr, animation, &game);
-	mlx_hook(game.window_ptr, 2, 1L<<0, key_press, &game);
 	mlx_loop(game.mlx_ptr);
 
 }

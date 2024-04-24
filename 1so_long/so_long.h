@@ -1,5 +1,5 @@
 #ifndef SO_LONG
-#define SO_LONG
+# define SO_LONG
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -8,8 +8,17 @@
 typedef struct img_addr
 {
 	void	*ennemi_ptr;
-	void	*player_ptr; 
+	void	*player_ptr;
+	void	*pac_left;
+	void	*pac_right;
+	void	*pac_up;
+	void	*pac_down; 
+	void	*pac_semi_left;
+	void	*pac_semi_right;
+	void	*pac_semi_up;
+	void	*pac_semi_down; 
 	void	*wall_ptr;
+	void	*black_wal;
 	void	*collectible_ptr;
 	void	*exitr_otr;
 
@@ -34,6 +43,8 @@ typedef struct data
 	int		number_moves;
 	int		x;
 	int		y;
+	int		keycode;
+	s_img_adrr	image;
 }s_data;
 
 // /* Color codes for printf  */
@@ -48,14 +59,17 @@ typedef struct data
 // # define WHITE "\033[0;97m"
 
 void get_next_line(int fd, s_data *game);
+void put_pacman(s_data *game, int keycode);
 void ft_add_img(s_data *game);
 void get_map(s_data *game);
-void put_image(s_data *game, int keycode);
+void put_image(s_data *game);
 void move_up(s_data *game);
 void move_down(s_data *game);
 void move_right(s_data *game);
 void move_left(s_data *game);
 void check_map(char *file_name, s_data *game);
 void ft_free(s_data *game);
+void ft_wait();
+void ft_i(s_data *game, int keycode);
 
 #endif
