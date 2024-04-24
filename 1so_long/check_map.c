@@ -133,5 +133,6 @@ void check_map(char *file_name, s_data *game)
         ft_free(game);
         exit(EXIT_FAILURE);
     }
+    game->counter_of_food = size.number_of_collectibles;
 
 }

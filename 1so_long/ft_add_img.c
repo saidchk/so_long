@@ -1,17 +1,19 @@
 #include "minilibx/mlx.h"
 #include "so_long.h"
 
-void fun(s_data *game, int keycode)
+void remove_traces(s_data *game, int keycode)
 {
+        mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, game->x  * 37, (game->y )* 37);
+
     if ((keycode == 0 || keycode == 123) && game->map[game->y][game->x + 1] != '.' && game->map[game->y][game->x + 1] != '1')
     {
             mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, (game->x + 1) * 37, game->y * 37);
-            //mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_left, game->x * 37, game->y * 37);
+           /// mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_left, game->x * 37, game->y * 37);
     }
     else if ((keycode == 2 || keycode == 124) && game->map[game->y][game->x - 1] != '.' && game->map[game->y][game->x - 1] != '1')
     {
         mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, (game->x - 1) * 37, game->y * 37);
-        //mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_right, game->x * 37, game->y * 37) ;
+       // mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_right, game->x * 37, game->y * 37) ;
     }
     else if ((keycode == 13 || keycode == 126 ) && game->map[game->y + 1][game->x] != '.' && game->map[game->y + 1][game->x] != '1')
     {
@@ -21,7 +23,7 @@ void fun(s_data *game, int keycode)
     else if ((keycode == 1 || keycode == 125) && game->map[game->y - 1][game->x] != '.' && game->map[game->y - 1][game->x] != '1')
     {
          mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, game->x  * 37, (game->y - 1)* 37);
-        // mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_down, game->x * 37, game->y * 37);
+         //mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_down, game->x * 37, game->y * 37);
     }
 
 }
@@ -29,7 +31,7 @@ void fun(s_data *game, int keycode)
 void ft_i(s_data *game, int keycode)
 {
     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, game->x  * 37, (game->y )* 37);
-    fun(game, keycode);
+    //fun(game, keycode);
     if ((keycode == 0 || keycode == 123) )
     {
             mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_left, game->x * 37, game->y * 37);
@@ -54,7 +56,7 @@ void put_pacman(s_data *game, int keycode)
     
     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.black_wal, game->x  * 37, (game->y )* 37);
 
-    fun(game, keycode);
+    //fun(game, keycode);
     if (keycode == 0 || keycode == 123)
        mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.pac_semi_left, game->x * 37, game->y * 37);
     else if (keycode == 2 || keycode == 124)    

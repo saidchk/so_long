@@ -35,16 +35,17 @@ typedef struct
 
 typedef struct data
 {
-    void    *mlx_ptr;
-    void    *window_ptr;
-    char    **map;    
-    int     map_len;
-	int		weight_map;
-	int		number_moves;
-	int		x;
-	int		y;
-	int		keycode;
+    void		*mlx_ptr;
+    void		*window_ptr;
+    char		**map;    
+    int			map_len;
+	int			weight_map;
+	int			number_moves;
+	int			x;
+	int			y;
+	int			keycode;
 	s_img_adrr	image;
+	int			counter_of_food
 }s_data;
 
 // /* Color codes for printf  */
@@ -69,7 +70,8 @@ void move_right(s_data *game);
 void move_left(s_data *game);
 void check_map(char *file_name, s_data *game);
 void ft_free(s_data *game);
-void ft_wait();
 void ft_i(s_data *game, int keycode);
+void remove_traces(s_data *game, int keycode);
+
 
 #endif
