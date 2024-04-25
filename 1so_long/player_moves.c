@@ -22,7 +22,7 @@ void put_number(int num)
 void move_up(s_data *game)
 {
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y - 1][game->x] == 'D')
-				ft_free(game) ;
+		end_animation(game);
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y - 1][game->x] == '1')
 				return ;
 	else if (game->map[game->y][game->x] == 'p')
@@ -41,7 +41,7 @@ void move_up(s_data *game)
 void move_down(s_data *game)
 {
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y + 1][game->x] == 'D')
-				ft_free(game);
+		end_animation(game);
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y + 1][game->x] == '1')
 				return ;
 	else if (game->map[game->y][game->x] == 'p')
@@ -60,7 +60,7 @@ void move_down(s_data *game)
 void move_left(s_data *game)
 {
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y][game->x - 1] == 'D')
-		ft_free(game);
+		end_animation(game);
 	if (game->map[game->y][game->x] == 'p' && game->map[game->y][game->x - 1] == '1')
 				return ;
 	else if (game->map[game->y][game->x] == 'p')

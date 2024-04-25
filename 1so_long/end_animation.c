@@ -1,6 +1,14 @@
 #include "so_long.h"
 #include "minilibx/mlx.h"
 
+
+void ft_put(s_data *game, void *pac)
+{
+   mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
+			game->image.black_wal, game->x * 37, game->y * 37);
+  mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
+			pac, game->x * 37, game->y * 37);
+}
 int ft_wait(s_data *game)
 {
     static int i = 0;
@@ -8,41 +16,20 @@ int ft_wait(s_data *game)
     if (i > 3000)
       ft_free(game);
     if (i == 500)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.player_ptr, game->x * 37, game->y * 37);
-    }
-    else if (i == 1000)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_semi_up, game->x * 37, game->y * 37);
-    }
-    if (i == 1500)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_semi, game->x * 37, game->y * 37);
-    }
-    else if (i == 2000)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.pac_tr, game->x * 37, (game->y) * 37);
-    }
-    else if (i == 2500)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.pac_min_tr, game->x * 37, (game->y) * 37);
-    }
+			ft_put (game,game->image.player_ptr);
     
+    else if (i == 800)
+    ft_put (game, game->image.pac_semi_up);
+  
+    if (i == 1600)
+        ft_put (game, game->image.pac_semi);
+    
+    else if (i == 2400)
+        ft_put (game, game->image.pac_tr);
+
+    else if (i == 2900)
+        ft_put (game, game->image.pac_min_tr);
+
     i++;
     return(0);
 }
