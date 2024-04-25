@@ -116,6 +116,8 @@ void	ft_add_img(s_data *game)
 	int	h;
 
 	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "door.xpm", &w, &h);
+	game->image.pac_tr = mlx_xpm_file_to_image(game->mlx_ptr, "pac_tr.xpm", &w, &h);
+	game->image.pac_min_tr = mlx_xpm_file_to_image(game->mlx_ptr, "pac_min_tr.xpm", &w, &h);
 	game->image.pac_semi = mlx_xpm_file_to_image(game->mlx_ptr, "pac_semi.xpm", &w, &h);
 	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "wa.xpm", &w,
 			&h);

@@ -32,25 +32,17 @@ int ft_wait(s_data *game)
     {
     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
-         mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_down, game->x * 37, game->y * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_semi_down, game->x * 37, game->y * 37);
+     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
+		game->image.pac_tr, game->x * 37, (game->y) * 37);
     }
     else if (i == 2500)
     {
     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
     mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_semi_down, game->x * 37, game->y * 37);
+		game->image.pac_min_tr, game->x * 37, (game->y) * 37);
     }
-    else if (i == 3000)
-    {
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-    mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_semi_down, game->x * 37, game->y * 37);
-    }
+    
     i++;
     return(0);
 }

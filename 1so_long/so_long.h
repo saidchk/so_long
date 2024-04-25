@@ -8,6 +8,8 @@
 typedef struct img_addr
 {
 	void	*ennemi_ptr;
+	void	*pac_tr;
+	void	*pac_min_tr;
 	void	*player_ptr;
 	void	*pac_left;
 	void	*pac_right;
