@@ -1,7 +1,6 @@
 #include "minilibx/mlx.h"
 #include "so_long.h"
 
-
 int	key_press(int keycode, void *param)
 {
 	s_data	*game;
@@ -12,19 +11,26 @@ int	key_press(int keycode, void *param)
 		game->keycode = keycode;
 	if (keycode == 53)
 	{
-		mlx_destroy_window(game->mlx_ptr, game->window_ptr);
+		// mlx_destroy_window(game->mlx_ptr, game->window_ptr);
 		ft_free(game);
-		exit(1);
 	}
 	return (0);
 }
 
+void	put_door(s_data *game)
+{
+	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.exit,
+		game->x_exit * 37, game->y_exit * 37);
+	game->counter_of_food--;
+}
 int	animation(s_data *game)
 {
 	static int	i = 0;
 
+	if (game->counter_of_food == 0)
+		put_door(game);
 	i++;
-	if (i == 1600)
+	if (i == 2000)
 	{
 		if (game->keycode == 13 || game->keycode == 126)
 			move_up(game);
@@ -37,18 +43,17 @@ int	animation(s_data *game)
 		put_pacman(game, 30000);
 		i = 0;
 	}
-	else if (i == 350)
+	else if (i == 450)
 		put_pacman(game, game->keycode);
-	else if (i == 800)
+	else if (i == 900)
 		ft_i(game, game->keycode);
-	else if (i == 1200)
+	else if (i == 1300)
 		put_pacman(game, game->keycode);
 	return (0);
 }
 
 int	ft_close(s_data *game)
 {
-	mlx_destroy_window(game->mlx_ptr, game->window_ptr);
 	ft_free(game);
 	exit(1);
 }
@@ -58,10 +63,10 @@ int	main(int ac, char **av)
 	s_data	game;
 
 	if (ac != 2)
-	{
-		write(1, "please enter 1 arg", 18);
-		return (0);
-	}
+		return (write(1, "please enter 1 arg", 18), 0);
+	game.keycode = 15645;
+	game.mlx_ptr = NULL;
+	game.window_ptr = NULL;
 	game.number_moves = 0;
 	check_map(av[1], &game);
 	game.mlx_ptr = mlx_init();

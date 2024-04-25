@@ -33,18 +33,3 @@ void get_map(s_data *game)
     get_next_line(fd, game);
 
 }
-
-// #include <stdio.h>
-// int main()
-// {
-//     s_data game;
-//     int i = 0;
-//     int j=0;
-
-//     get_map(&game);
-//     while (game.map[i])
-//     {
-//         printf("%s\n",game.map[i]);
-//         i++;
-//     }
-// }

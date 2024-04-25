@@ -11,6 +11,7 @@ typedef struct img_addr
 	void	*player_ptr;
 	void	*pac_left;
 	void	*pac_right;
+	void	*pac_semi;
 	void	*pac_up;
 	void	*pac_down; 
 	void	*pac_semi_left;
@@ -74,6 +75,7 @@ void check_map(char *file_name, s_data *game);
 void ft_free(s_data *game);
 void ft_i(s_data *game, int keycode);
 void remove_traces(s_data *game, int keycode);
+void end_animation(s_data *game);
 
 
 #endif

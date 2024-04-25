@@ -16,7 +16,7 @@ void	ft_check_extension(char *file_name)
 		write(1, "Error, the name of file is note valide\n", 39);
 		exit(EXIT_FAILURE);
 	}
-	while (ext[j])
+	while (ext[j] || file_name[i])
 	{
 		if (file_name[i] != ext[j++])
 		{
