@@ -20,15 +20,15 @@ typedef struct img_addr
 	void	*wall_ptr;
 	void	*black_wal;
 	void	*collectible_ptr;
-	void	*exitr_otr;
+	void	*exit;
 
 }s_img_adrr;
 
 typedef struct 
 {
-	int number_of_collectibles ;
-    int number_of_players ;
-    int number_of_exit;
+	int number_of_c ;
+    int number_of_p ;
+    int number_of_e;
 	int x;
     int y;
 }num_of_composed;
@@ -45,7 +45,9 @@ typedef struct data
 	int			y;
 	int			keycode;
 	s_img_adrr	image;
-	int			counter_of_food
+	int			counter_of_food;
+	int			x_exit;
+	int			y_exit;
 }s_data;
 
 // /* Color codes for printf  */
