@@ -11,7 +11,6 @@ int	key_press(int keycode, void *param)
 		game->keycode = keycode;
 	if (keycode == 53)
 	{
-		// mlx_destroy_window(game->mlx_ptr, game->window_ptr);
 		ft_free(game);
 	}
 	return (0);
@@ -55,7 +54,7 @@ int	animation(s_data *game)
 int	ft_close(s_data *game)
 {
 	ft_free(game);
-	exit(1);
+	return(0);
 }
 
 int	main(int ac, char **av)
@@ -63,7 +62,7 @@ int	main(int ac, char **av)
 	s_data	game;
 
 	if (ac != 2)
-		return (write(1, "please enter 1 arg", 18), 0);
+		return (write(1, "please enter 1 arg\n", 19), 0);
 	game.keycode = 15645;
 	game.mlx_ptr = NULL;
 	game.window_ptr = NULL;
@@ -72,7 +71,7 @@ int	main(int ac, char **av)
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
 		return (ft_free(&game), 1);
-	game.window_ptr = mlx_new_window(game.mlx_ptr, 50 * 32, 40 * 32, "so_long");
+	game.window_ptr = mlx_new_window(game.mlx_ptr, game.weight_map * 37, game.map_len * 37, "so_long");
 	if (!game.window_ptr)
 	{
 		ft_free(&game);
