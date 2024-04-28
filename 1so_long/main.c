@@ -25,10 +25,18 @@ void	put_door(s_data *game)
 int	animation(s_data *game)
 {
 	static int	i = 0;
+	static int	j = 0;
+
 
 	if (game->counter_of_food == 0)
 		put_door(game);
 	i++;
+	j++;
+	if (j == 3000)
+		{
+			move(game);
+			j = 0;
+		}
 	if (i == 2000)
 	{
 		if (game->keycode == 13 || game->keycode == 126)
@@ -60,7 +68,6 @@ int	ft_close(s_data *game)
 int	main(int ac, char **av)
 {
 	s_data	game;
-
 	if (ac != 2)
 		return (write(1, "please enter 1 arg\n", 19), 0);
 	game.keycode = 15645;

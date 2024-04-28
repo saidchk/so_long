@@ -36,6 +36,12 @@ typedef struct
     int y;
 }num_of_composed;
 
+typedef struct
+{
+	int x_g;
+	int y_g;
+}move_ghost;
+
 typedef struct data
 {
     void		*mlx_ptr;
@@ -51,7 +57,10 @@ typedef struct data
 	int			counter_of_food;
 	int			x_exit;
 	int			y_exit;
+	move_ghost	ennemi;
+	int			check;
 }s_data;
+
 
 // /* Color codes for printf  */
 // # define DEFAULT "\033[0;39m"
@@ -78,6 +87,7 @@ void ft_free(s_data *game);
 void ft_i(s_data *game, int keycode);
 void remove_traces(s_data *game, int keycode);
 void end_animation(s_data *game);
+void  move(s_data *game);
 
 
 #endif

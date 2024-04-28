@@ -38,7 +38,7 @@ void	ft_is_closed(s_data *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if (game->map[y][x] != '1')
+			if (game->map[y][x] != '1' || game->map[y][game->weight_map - 1] != '1')
 			{
 				write(1, "close the map\n", 14);
 				ft_free(game);
@@ -60,6 +60,11 @@ void	check_p_e_c(s_data *game, num_of_composed *size)
 		size->x = 1;
 		while (game->map[size->y][size->x])
 		{
+			if (game->map[size->y][size->x] == 'D')
+			{
+				game->ennemi.x_g = size->x;
+				game->ennemi.y_g = size->y;
+			}
 			if (game->map[size->y][size->x] == 'c')
 				size->number_of_c++;
 			else if (game->map[size->y][size->x] == 'p')
