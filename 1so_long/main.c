@@ -32,7 +32,7 @@ int	animation(s_data *game)
 		put_door(game);
 	i++;
 	j++;
-	if (j == 3000)
+	if (j == 2500)
 		{
 			move(game);
 			j = 0;

@@ -59,6 +59,7 @@ typedef struct data
 	int			y_exit;
 	move_ghost	ennemi;
 	int			check;
+	char		d;
 }s_data;
 
 
