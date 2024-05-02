@@ -1,29 +1,41 @@
-#include "so_long.h"
-#include "minilibx/mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_moves.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
+/*   Updated: 2024/05/02 21:46:32 by schakkou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void put_number(int num)
+#include "minilibx/mlx.h"
+#include "so_long.h"
+
+void	put_number(int num)
 {
-	char n;
+	char	n;
 
 	if (num < 10)
 	{
 		n = num + 48;
-		write (1, &n, 1);
-		return;
+		write(1, &n, 1);
+		return ;
 	}
 	else
 	{
-	put_number(num / 10);
-	n = (num % 10) + 48;
-	write (1, &n, 1);
+		put_number(num / 10);
+		n = (num % 10) + 48;
+		write(1, &n, 1);
 	}
-}	
+}
 
-void move_up(s_data *game)
+void	move_up(s_data *game)
 {
-	
-	if (game->map[game->y][game->x] == 'P' && game->map[game->y - 1][game->x] == '1')
-				return ;
+	if (game->map[game->y][game->x] == 'P' && game->map[game->y
+		- 1][game->x] == '1')
+		return ;
 	else if (game->map[game->y][game->x] == 'P')
 	{
 		if (game->map[game->y - 1][game->x] == '.')
@@ -33,16 +45,16 @@ void move_up(s_data *game)
 		game->number_moves++;
 		game->y--;
 		put_number(game->number_moves);
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	}
 	remove_traces(game, game->keycode);
 }
-void move_down(s_data *game)
+
+void	move_down(s_data *game)
 {
-	// if (game->map[game->y][game->x] == 'P' && game->map[game->y + 1][game->x] == 'D')
-	// 	end_animation(game);
-	if (game->map[game->y][game->x] == 'P' && game->map[game->y + 1][game->x] == '1')
-				return ;
+	if (game->map[game->y][game->x] == 'P' && game->map[game->y
+		+ 1][game->x] == '1')
+		return ;
 	else if (game->map[game->y][game->x] == 'P')
 	{
 		if (game->map[game->y + 1][game->x] == '.')
@@ -52,16 +64,16 @@ void move_down(s_data *game)
 		game->number_moves++;
 		game->y++;
 		put_number(game->number_moves);
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	}
 	remove_traces(game, game->keycode);
 }
-void move_left(s_data *game)
+
+void	move_left(s_data *game)
 {
-	// if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x - 1] == 'D')
-	// 	end_animation(game);
-	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x - 1] == '1')
-				return ;
+	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
+		- 1] == '1')
+		return ;
 	else if (game->map[game->y][game->x] == 'P')
 	{
 		if (game->map[game->y][game->x - 1] == '.')
@@ -71,18 +83,15 @@ void move_left(s_data *game)
 		game->number_moves++;
 		game->x--;
 		put_number(game->number_moves);
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	}
 	remove_traces(game, game->keycode);
 }
-void move_right(s_data *game)
+
+void	move_right(s_data *game)
 {
-	// if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x + 1] == 'D')
-	// {
-	// 	end_animation(game);
-	// 	ft_free(game);
-	// }
-	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x + 1] == '1')
+	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
+		+ 1] == '1')
 		return ;
 	else if (game->map[game->y][game->x] == 'P')
 	{
@@ -93,7 +102,7 @@ void move_right(s_data *game)
 		game->number_moves++;
 		game->x++;
 		put_number(game->number_moves);
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 		remove_traces(game, game->keycode);
 	}
 }

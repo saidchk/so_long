@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
+/*   Updated: 2024/05/02 21:41:04 by schakkou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	ft_check_extension(char *file_name)
@@ -38,7 +50,8 @@ void	ft_is_closed(s_data *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if (game->map[y][x] != '1' || game->map[y][game->weight_map - 1] != '1')
+			if (game->map[y][x] != '1' || game->map[y][game->weight_map
+				- 1] != '1')
 			{
 				write(1, "close the map\n", 14);
 				ft_free(game);
@@ -77,7 +90,7 @@ void	check_p_e_c(s_data *game, num_of_composed *size)
 			{
 				size->number_of_e++;
 				game->x_exit = size->x;
-				 game->y_exit = size->y;
+				game->y_exit = size->y;
 			}
 			size->x++;
 		}
@@ -87,7 +100,7 @@ void	check_p_e_c(s_data *game, num_of_composed *size)
 		|| size->number_of_p != 1)
 	{
 		write(1, "error in composed\n", 18);
-		 ft_free(game);
+		ft_free(game);
 	}
 }
 
@@ -137,7 +150,8 @@ void	check_map(char *map_name, s_data *game)
 	check_p_e_c(game, &size);
 	flood_fill(game, game->x, game->y, &count_exit);
 	game->map[game->y][game->x] = 'P';
-	if (game->counter_of_food != size.number_of_c || count_exit != size.number_of_e)
+	if (game->counter_of_food != size.number_of_c
+		|| count_exit != size.number_of_e)
 	{
 		write(1, "not valide path\n", 16);
 		ft_free(game);

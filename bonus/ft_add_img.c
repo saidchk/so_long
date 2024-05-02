@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_add_img.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
+/*   Updated: 2024/05/02 21:57:07 by schakkou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minilibx/mlx.h"
 #include "so_long.h"
 
@@ -17,14 +29,14 @@ void	remove_traces(s_data *game, int keycode)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.black_wal, (game->x - 1) * 37, game->y * 37);
 	}
-	else if ((keycode == 13 || keycode == 126) && game->map[game->y
-		+ 1][game->x] != '.' && game->map[game->y + 1][game->x] != '1')
+	else if ((keycode == 13 || keycode == 126) && game->map[game->y + 1]
+		[game->x] != '.' && game->map[game->y + 1][game->x] != '1')
 	{
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.black_wal, game->x * 37, (game->y + 1) * 37);
 	}
-	else if ((keycode == 1 || keycode == 125) && game->map[game->y
-		- 1][game->x] != '.' && game->map[game->y - 1][game->x] != '1')
+	else if ((keycode == 1 || keycode == 125) && game->map[game->y - 1]
+		[game->x] != '.' && game->map[game->y - 1][game->x] != '1')
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.black_wal, game->x * 37, (game->y - 1) * 37);
 }
@@ -113,32 +125,14 @@ void	ft_add_img(s_data *game)
 	int	w;
 	int	h;
 
-	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures/door.xpm", &w, &h);
-	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr, "textures/wa.xpm", &w,
-			&h);
-	game->image.pac_up = mlx_xpm_file_to_image(game->mlx_ptr, "textures/pac_open_up.xpm",
+	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures/door.xpm",
 			&w, &h);
-	game->image.pac_left = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_open_left.xpm", &w, &h);
-	game->image.pac_right = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_open_right.xpm", &w, &h);
-	game->image.pac_down = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_open_down.xpm", &w, &h);
-	game->image.pac_semi_left = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_semi_left.xpm", &w, &h);
-	game->image.pac_semi_right = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_semi_right.xpm", &w, &h);
-	game->image.pac_semi_down = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_semi_down.xpm", &w, &h);
-	game->image.pac_semi_up = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_semi_up.xpm", &w, &h);
-	game->image.player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/pac_closed.xpm", &w, &h);
-	game->image.black_wal = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures/black_wal.xpm", &w, &h);
+	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			"textures/wa.xpm", &w, &h);
 	game->image.ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"textures/ghost_down2.xpm", &w, &h);
 	game->image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"textures/collectible.xpm", &w, &h);
+	ft_load_image(game);
 	put_image(game);
 }

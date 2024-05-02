@@ -83,5 +83,6 @@ void move_right_ennemi(s_data *game);
 void move_left_ennemi(s_data *game);
 void move_up_ennemi(s_data *game);
 void move_down_ennemi(s_data *game);
+void ft_load_image(s_data *game);
 
 #endif
