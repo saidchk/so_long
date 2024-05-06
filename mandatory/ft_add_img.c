@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_img_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_add_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 15:31:38 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/05 23:46:04 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 
 void	remove_traces(s_data *game, int keycode)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
+	if (game->counter.number_of_c == 0)
+ 		put_door(game);
 	if ((keycode == 0 || keycode == 123) && game->map[game->y][game->x
 		+ 1] != '.' && game->map[game->y][game->x + 1] != '1')
 	{
@@ -41,52 +41,23 @@ void	remove_traces(s_data *game, int keycode)
 			game->image.black_wal, game->x * 37, (game->y - 1) * 37);
 }
 
-void	ft_i(s_data *game, int keycode)
+void	put_pacman(s_data *game)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
-	if ((keycode == 0 || keycode == 123))
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_left, game->x * 37, game->y * 37);
-	}
-	else if ((keycode == 2 || keycode == 124))
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_right, game->x * 37, game->y * 37);
-	}
-	else if ((keycode == 13 || keycode == 126))
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_up, game->x * 37, game->y * 37);
-	}
-	else if ((keycode == 1 || keycode == 125))
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.pac_down, game->x * 37, game->y * 37);
-	}
-}
-
-void	put_pacman(s_data *game, int keycode)
-{
-	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y) * 37);
-	if (keycode == 0 || keycode == 123)
+	if (game->keycode == 0 || game->keycode == 123)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.pac_semi_left, game->x * 37, game->y * 37);
-	else if (keycode == 2 || keycode == 124)
+	else if (game->keycode == 2 || game->keycode == 124)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.pac_semi_right, game->x * 37, game->y * 37);
-	else if (keycode == 13 || keycode == 126)
+	else if (game->keycode == 13 || game->keycode == 126)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.pac_semi_up, game->x * 37, game->y * 37);
-	else if (keycode == 1 || keycode == 125)
+	else if (game->keycode == 1 || game->keycode == 125)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.pac_semi_down, game->x * 37, game->y * 37);
-	else if (keycode == 30000)
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.player_ptr, game->x * 37, game->y * 37);
-	if (game->counter_of_food == -1 && game->x_exit == game->x
+	if (game->counter.number_of_c == 0 && game->x_exit == game->x
 		&& game->y_exit == game->y)
 		ft_free(game);
 }
@@ -107,7 +78,7 @@ void	put_image(s_data *game)
 					game->image.wall_ptr, j * 37, i * 37);
 			else if (game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-					game->image.player_ptr, j * 37, i * 37);
+					game->image.pac_semi_left, j * 37, i * 37);
 			else if (game->map[i][j] == 'D')
 				mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 					game->image.ennemi_ptr, j * 37, i * 37);
@@ -122,23 +93,8 @@ void	put_image(s_data *game)
 
 void	ft_add_img(s_data *game)
 {
-	int	w;
-	int	h;
+	
 
-	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures1/door.xpm",
-			&w, &h);
-	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/wa.xpm", &w, &h);
-	game->image.ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/ghost_down2.xpm", &w, &h);
-	game->image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/collectible.xpm", &w, &h);
-	game->image.pac_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_tr.xpm", &w, &h);
-	game->image.pac_min_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_min_tr.xpm", &w, &h);
-	game->image.pac_semi = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_semi.xpm", &w, &h);
 	ft_load_image(game);
 	put_image(game);
 }

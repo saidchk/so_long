@@ -2,17 +2,14 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 lib = -L minilibx
 FRAMEWORKSFLAGS =   -lmlx -framework OpenGL -framework AppKit
-src = main.c\
-directions_of_ghost.c\
-end_animation.c\
-free_map.c\
-ft_add_img.c\
-get_map.c\
-get_next_line.c\
-load_image.c\
-move_ghost.c\
-player_moves.c\
-check_map.c
+src = mandatory/main.c\
+	mandatory/free_map.c\
+	mandatory/ft_add_img.c\
+	mandatory/get_map.c\
+	mandatory/get_next_line.c\
+	mandatory/load_image.c\
+	mandatory/player_moves.c\
+	mandatory/check_map.c
 
 src_bonus = bonus/main_bonus.c\
 			bonus/directions_of_ghost_bonus.c\
@@ -30,32 +27,37 @@ fsa= -fsanitize=address
 NAME = so_long
 BONUS_NAME = so_long_bonus
 OBJ = $(src:.c=.o)
-OBJ_BONUS := $(src_bonus:.c=.o) 
+OBJ_BONUS = $(src_bonus:.c=.o) 
 
 
 all : $(NAME)
 
-${NAME} : ${OBJ} so_long.h
+${NAME} : ${OBJ} mandatory/so_long.h
 	${CC} ${FLAGS} ${OBJ} ${lib} ${FRAMEWORKSFLAGS} -o $@
 
 %.o : %.c
-	$(CC) ${FLAGS} -c $<
+	$(CC) ${FLAGS} -c $< -o $@
 
 bonus: ${BONUS_NAME} 
 
 $(BONUS_NAME) : $(OBJ_BONUS) bonus/so_long_bonus.h
-	${CC} ${FLAGS} $(OBJ_BONUS) ${lib} ${FRAMEWORKSFLAGS} -o $@ 
+	${CC} ${FLAGS} $(OBJ_BONUS) $(fsa) ${lib} ${FRAMEWORKSFLAGS} -o $@ 
 
-%.o: %.c
-	${CC}  ${FLAGS} -c $< -o $@
+%.o : %.c
+	${CC} ${FLAGS} $(fsa) -c $< -o $@
+
+clean_bonus :
+	rm -f $(OBJ_BONUS)
+
+fclean_bonus : clean_bonus
+	rm -f ${BONUS_NAME}
+
+re_bonus : fclean bonus
 
 clean: 
-	rm $(OBJ_BONUS)
+	rm -f ${OBJ}
 
 fclean: clean
-	rm ${BONUS_NAME}
+	rm -f $(NAME) 
 
-re : fclean bonus
-
-
-
+re : fclean all

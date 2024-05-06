@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 00:59:54 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:10:11 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*one_line(char *array, int size_line)
 	row = malloc(size_line + 1);
 	if (row == NULL)
 	{
+		write(1, "error in allocation\n", 21);
 		return (NULL);
 	}
 	i = 0;
@@ -55,8 +56,8 @@ void	get_next_line(int fd, s_data *game)
 	i = 0;
 	head = tab;
 	size_read = read(fd, tab, game->size_m);
-	if (size_read == -1)
-		free(game);
+	if (size_read <= 0)
+		ft_free(game, -1);
 	tab[size_read] = 0;
 	while (i < game->map_len)
 	{
@@ -64,10 +65,12 @@ void	get_next_line(int fd, s_data *game)
 		if (game->weight_map != size_line || game->map_len == size_line)
 		{
 			write(1, "the map is not rectangular", 26);
-			ft_free(game);
+			ft_free(game, i -1);
 		}
 		game->map[i] = one_line(head, size_line);
+		if (game->map[i++] == NULL)
+			ft_free(game, i-1);
 		head += size_line + 1;
-		i++;
+
 	}
 }

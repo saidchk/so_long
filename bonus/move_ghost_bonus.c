@@ -6,12 +6,11 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 01:00:22 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 15:25:47 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-#include <math.h>
 
 void	previous_move(s_data *game)
 {
@@ -65,13 +64,13 @@ void	move(s_data *game)
 	dis[1] = 10000;
 	dis[2] = 10000;
 	dis[3] = 10000;
-	if (game->map[e_y - 1][e_x] != '1' && game->d != 'd')
+	if (game->map[e_y - 1][e_x] != '1' && game->map[e_y - 1][e_x] != 'D' && game->d != 'd')
 		dis[0] = abs(e_x - game->x) + abs(e_y - 1 - game->y);
-	if (game->map[e_y + 1][e_x] != '1' && game->d != 'u')
+	if (game->map[e_y + 1][e_x] != '1'&& game->map[e_y + 1][e_x] != 'D' && game->d != 'u')
 		dis[1] = abs(e_x - game->x) + abs(e_y + 1 - game->y);
-	if (game->map[e_y][e_x + 1] != '1' && game->d != 'l')
+	if (game->map[e_y][e_x + 1] != '1' && game->map[e_y][e_x + 1] != 'D' && game->d != 'l')
 		dis[2] = abs(e_x + 1 - game->x) + abs(e_y - game->y);
-	if (game->map[e_y][e_x - 1] != '1' && game->d != 'r')
+	if (game->map[e_y][e_x - 1] != '1' && game->map[e_y][e_x - 1] != 'D' && game->d != 'r')
 		dis[3] = abs(e_x - 1 - game->x) + abs(e_y - game->y);
 	move_ennemi(game, dis[0], dis[1], dis[2], dis[3]);
 }

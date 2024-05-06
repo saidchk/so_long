@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 00:59:47 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:07:41 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_map(s_data *game, char *map_name)
 	if (game->map == NULL)
 	{
 		write(1, "error in allocation\n", 21);
-		ft_free(game);
+		ft_free(game, -1);
 	}
 	game->map[game->map_len] = 0;
 	fd = open(map_name, O_RDONLY);

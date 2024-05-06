@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 18:20:21 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:42:37 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	put_pacman(s_data *game, int keycode)
 			game->image.player_ptr, game->x * 37, game->y * 37);
 	if (game->counter_of_food == -1 && game->x_exit == game->x
 		&& game->y_exit == game->y)
-		ft_free(game);
+		ft_free(game, game->map_len);
 }
 
 void	put_image(s_data *game)
@@ -125,20 +125,20 @@ void	ft_add_img(s_data *game)
 	int	w;
 	int	h;
 
-	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "../textures1/door.xpm",
+	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures1/door.xpm",
 			&w, &h);
 	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/wa.xpm", &w, &h);
+			"textures1/wa.xpm", &w, &h);
 	game->image.ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/ghost_down2.xpm", &w, &h);
+			"textures1/ghost_down2.xpm", &w, &h);
 	game->image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/collectible.xpm", &w, &h);
+			"textures1/collectible.xpm", &w, &h);
 	game->image.pac_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_tr.xpm", &w, &h);
+			"textures1/pac_tr.xpm", &w, &h);
 	game->image.pac_min_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_min_tr.xpm", &w, &h);
+			"textures1/pac_min_tr.xpm", &w, &h);
 	game->image.pac_semi = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_semi.xpm", &w, &h);
+			"textures1/pac_semi.xpm", &w, &h);
 	ft_load_image(game);
 	put_image(game);
 }

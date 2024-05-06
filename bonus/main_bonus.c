@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 13:03:34 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:04:48 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	key_press(int keycode, void *param)
 		game->keycode = keycode;
 	if (keycode == 53)
 	{
-		ft_free(game);
+		ft_free(game, game->map_len);
 	}
 	return (0);
 }
-
 void	put_door(s_data *game)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.exit,
@@ -64,7 +63,7 @@ int	animation(s_data *game)
 		ft_i(game, game->keycode);
 	else if (i == 2000)
 		put_pacman(game, game->keycode);
-	if (j++ == 2600)
+	if (j++ == 2600 && game->ennemi.x_g != -1)
 	{
 		move(game);
 		j = 0;
@@ -86,11 +85,11 @@ int	main(int ac, char **av)
 	check_map(av[1], &game);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
-		return (ft_free(&game), 1);
+		return (write(1, "error\n", 6), ft_free(&game, game.map_len), 1);
 	game.window_ptr = mlx_new_window(game.mlx_ptr, game.weight_map * 37,
 			game.map_len * 37, "so_long");
 	if (!game.window_ptr)
-		ft_free(&game);
+		return (write(1, "error\n", 6), ft_free(&game, game.map_len), 1);
 	ft_add_img(&game);
 	mlx_hook(game.window_ptr, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.window_ptr, 17, (0L), ft_close, &game);

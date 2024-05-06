@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 18:20:06 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:41:54 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ void	ft_load_image(s_data *game)
 	int	h;
 
 	game->image.pac_up = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_open_up.xpm", &w, &h);
+			"textures1/pac_open_up.xpm", &w, &h);
 	game->image.pac_left = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_open_left.xpm", &w, &h);
+			"textures1/pac_open_left.xpm", &w, &h);
 	game->image.pac_right = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_open_right.xpm", &w, &h);
+			"textures1/pac_open_right.xpm", &w, &h);
 	game->image.pac_down = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_open_down.xpm", &w, &h);
+			"textures1/pac_open_down.xpm", &w, &h);
 	game->image.pac_semi_left = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_semi_left.xpm", &w, &h);
+			"textures1/pac_semi_left.xpm", &w, &h);
 	game->image.pac_semi_right = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_semi_right.xpm", &w, &h);
+			"textures1/pac_semi_right.xpm", &w, &h);
 	game->image.pac_semi_down = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_semi_down.xpm", &w, &h);
+			"textures1/pac_semi_down.xpm", &w, &h);
 	game->image.pac_semi_up = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_semi_up.xpm", &w, &h);
+			"textures1/pac_semi_up.xpm", &w, &h);
 	game->image.player_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/pac_closed.xpm", &w, &h);
+			"textures1/pac_closed.xpm", &w, &h);
 	game->image.black_wal = mlx_xpm_file_to_image(game->mlx_ptr,
-			"../textures1/black_wal.xpm", &w, &h);
+			"textures1/black_wal.xpm", &w, &h);
   if (ft_check(&game->image) == -1)
-        ft_free(game);
+        ft_free(game, game->map_len);
 }

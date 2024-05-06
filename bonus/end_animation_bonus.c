@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 14:23:36 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:06:09 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	ft_wait(s_data *game)
 	static int	i = 0;
 
 	if (i > 7000)
-		ft_free(game);
+		ft_free(game, game->map_len);
 	if (i == 500)
-		ft_put(game, &game->image.player_ptr);
+		ft_put(game, game->image.player_ptr);
 	else if (i == 2000)
-		ft_put(game, &game->image.pac_semi_up);
+		ft_put(game, game->image.pac_semi_up);
 	if (i == 3500)
-		ft_put(game, &game->image.pac_semi);
+		ft_put(game, game->image.pac_semi);
 	else if (i == 5000)
-		ft_put(game, &game->image.pac_tr);
+		ft_put(game, game->image.pac_tr);
 	else if (i == 6500)
-		ft_put(game, &game->image.pac_min_tr);
+		ft_put(game, game->image.pac_min_tr);
 	i++;
 	return (0);
 }

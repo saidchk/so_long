@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map_bonus.c                                    :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 16:59:54 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 03:01:57 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-///bach  nejbed x o y mehtaj nehseb l3ard o l formul li nkhadem bach d3tini x = size - line lifih db-1 * l3ard - 1 and y = line lifih  db -1
 void	ft_count_p_e_c(s_data *game, char tab, int len )
 {
 	
 	if (tab != 'C' && tab != 'P' && tab != '0' && tab != 'E' && tab != '1')
 	{
-		write (q,"Error, not valid composed\n", 27);
+		write (1,"Error, not valid composed\n", 27);
 		exit(0);
 	}
 	else if (tab == 'C')
@@ -35,7 +34,6 @@ void	ft_count_p_e_c(s_data *game, char tab, int len )
 		game->x_exit = (game->size_m -1) - (len  * game->weight_map) - len ;
 		game->y_exit = len;
 	}
-	
 }
 int	count_len(int fd, s_data *game)
 {

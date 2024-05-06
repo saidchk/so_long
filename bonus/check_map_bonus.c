@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 12:29:45 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:14:01 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_is_closed(s_data *game)
 				- 1] != '1')
 			{
 				write(1, "close the map\n", 14);
-				ft_free(game);
+				ft_free(game, game->map_len);
 				exit(EXIT_FAILURE);
 			}
 			if (y == 0 || y == game->map_len - 1)
@@ -66,9 +66,8 @@ void	flood_fill(s_data *game, int x, int y, int *count_exit)
 {
 	if ((y < 0 || y >= game->map_len) || (x < 0 || x >= game->weight_map)
 		|| game->map[y][x] == 'k' || game->map[y][x] == '.'
-		|| game->map[y][x] == 'e' || (game->map[y][x] != '0'
-			&& game->map[y][x] != 'C' && game->map[y][x] != 'P'
-			&& game->map[y][x] != 'E'))
+		|| game->map[y][x] == 'e' || 
+		game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return ;
 	else
 	{
@@ -101,6 +100,7 @@ void	check_map(char *map_name, s_data *game)
 	game->counter_of_food = 0;
 	game->size_m = 0;
 	count_exit = 0;
+	game->ennemi.x_g = -1;
 	ft_check_extension(map_name);
 	get_map(game, map_name);
 	ft_is_closed(game);
@@ -110,7 +110,7 @@ void	check_map(char *map_name, s_data *game)
 		|| count_exit != game->counter.number_of_e)
 	{
 		write(1, "not valide path\n", 16);
-		ft_free(game);
+		ft_free(game, game->map_len);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/04 13:15:41 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 18:05:40 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void check_collision(s_data *game, int x, int y)
 				game->image.ennemi_ptr, game->ennemi.x_g * 37,
 				(game->ennemi.y_g) * 37);
 		end_animation(game);
-		ft_free(game);
+		ft_free(game, game->map_len);
 	}
 }
 

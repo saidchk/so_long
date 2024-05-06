@@ -58,16 +58,13 @@ typedef struct data
 	int			counter_of_food;
 	int			x_exit;
 	int			y_exit;
-	move_ghost	ennemi;
-	int			check;
-	char		d;
 	int			size_m;
 	num_of_composed	counter;
 }s_data;
 
-
+void	put_door(s_data *game);
 void get_next_line(int fd, s_data *game);
-void put_pacman(s_data *game, int keycode);
+void put_pacman(s_data *game);
 void ft_add_img(s_data *game);
 void get_map(s_data *game, char *map_name);
 void put_image(s_data *game);
@@ -76,15 +73,8 @@ void move_down(s_data *game);
 void move_right(s_data *game);
 void move_left(s_data *game);
 void check_map(char *file_name, s_data *game);
-void ft_free(s_data *game, int i);
-void ft_i(s_data *game, int keycode);
+void ft_free(s_data *game);
 void remove_traces(s_data *game, int keycode);
-void end_animation(s_data *game);
-void  move(s_data *game);
-void move_right_ennemi(s_data *game);
-void move_left_ennemi(s_data *game);
-void move_up_ennemi(s_data *game);
-void move_down_ennemi(s_data *game);
 void ft_load_image(s_data *game);
 int	ft_close(s_data *game);
 
