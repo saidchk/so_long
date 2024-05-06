@@ -61,7 +61,6 @@ void	ft_is_closed(s_data *game)
 	}
 }
 
-
 void	flood_fill(s_data *game, int x, int y)
 {
 	if ((y < 0 || y >= game->map_len) || (x < 0 || x >= game->weight_map)
@@ -93,7 +92,7 @@ void	flood_fill(s_data *game, int x, int y)
 
 void	check_map(char *map_name, s_data *game)
 {
-	int				save_value;
+	int	save_value;
 
 	game->counter.number_of_c = 0;
 	game->counter.number_of_e = 0;
@@ -106,8 +105,7 @@ void	check_map(char *map_name, s_data *game)
 	ft_is_closed(game);
 	flood_fill(game, game->x, game->y);
 	game->map[game->y][game->x] = 'P';
-	if ( game->counter.number_of_c != 0
-		|| game->counter.number_of_e != 0)
+	if (game->counter.number_of_c != 0 || game->counter.number_of_e != 0)
 	{
 		write(1, "not valide path\n", 16);
 		ft_free(game);

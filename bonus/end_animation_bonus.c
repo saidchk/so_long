@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   end_animation_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 18:06:09 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 21:28:22 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_put(s_data *game, void *pac)
+void	ft_put(t_data *game, void *pac)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, game->y * 37);
@@ -20,7 +20,7 @@ void	ft_put(s_data *game, void *pac)
 		game->y * 37);
 }
 
-int	ft_wait(s_data *game)
+int	ft_wait(t_data *game)
 {
 	static int	i = 0;
 
@@ -40,9 +40,8 @@ int	ft_wait(s_data *game)
 	return (0);
 }
 
-void	end_animation(s_data *game)
+void	end_animation(t_data *game)
 {
-
 	mlx_loop_hook(game->mlx_ptr, ft_wait, game);
 	mlx_loop(game->mlx_ptr);
 }

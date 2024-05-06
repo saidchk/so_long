@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_ghost_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 15:25:47 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 22:33:46 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	previous_move(s_data *game)
+void	previous_move(t_data *game)
 {
 	if (game->d == 'u')
 		move_down_ennemi(game);
@@ -22,37 +22,27 @@ void	previous_move(s_data *game)
 		move_right_ennemi(game);
 	else
 		move_left_ennemi(game);
-	game->d = ('d' * (game->d == 'u') + 'u' * (game->d == 'd') + 'r'
-			* (game->d == 'l') + 'l' * (game->d == 'r'));
 }
 
-void	move_ennemi(s_data *game, int u, int d, int r, int l)
+void	move_ennemi(t_data *game, int *dis)
 {
-	if (u != 10000 && u <= d && u <= r && u <= l)
-	{
+	if (dis[0] != MAX_INT && dis[0] <= dis[1] && dis[0] <= dis[2]
+		&& dis[0] <= dis[3])
 		move_up_ennemi(game);
-		game->d = 'u';
-	}
-	else if (l != 10000 && l <= d && l <= u && l <= r)
-	{
+	else if (dis[3] != MAX_INT && dis[3] <= dis[1] && dis[3] <= dis[0]
+		&& dis[3] <= dis[2])
 		move_left_ennemi(game);
-		game->d = 'l';
-	}
-	else if (d != 10000 && d <= u && d <= r && d <= l)
-	{
+	else if (dis[1] != MAX_INT && dis[1] <= dis[0] && dis[1] <= dis[2]
+		&& dis[1] <= dis[3])
 		move_down_ennemi(game);
-		game->d = 'd';
-	}
-	else if (r != 10000 && r <= d && r <= u && r <= l)
-	{
+	else if (dis[2] != MAX_INT && dis[2] <= dis[1] && dis[2] <= dis[0]
+		&& dis[2] <= dis[3])
 		move_right_ennemi(game);
-		game->d = 'r';
-	}
 	else
 		previous_move(game);
 }
 
-void	move(s_data *game)
+void	move(t_data *game)
 {
 	int	dis[4];
 	int	e_x;
@@ -60,17 +50,21 @@ void	move(s_data *game)
 
 	e_x = game->ennemi.x_g;
 	e_y = game->ennemi.y_g;
-	dis[0] = 10000;
-	dis[1] = 10000;
-	dis[2] = 10000;
-	dis[3] = 10000;
-	if (game->map[e_y - 1][e_x] != '1' && game->map[e_y - 1][e_x] != 'D' && game->d != 'd')
+	dis[0] = MAX_INT;
+	dis[1] = MAX_INT;
+	dis[2] = MAX_INT;
+	dis[3] = MAX_INT;
+	if (game->map[e_y - 1][e_x] != '1' && game->map[e_y - 1][e_x] != 'D'
+		&& game->d != 'd')
 		dis[0] = abs(e_x - game->x) + abs(e_y - 1 - game->y);
-	if (game->map[e_y + 1][e_x] != '1'&& game->map[e_y + 1][e_x] != 'D' && game->d != 'u')
+	if (game->map[e_y + 1][e_x] != '1' && game->map[e_y + 1][e_x] != 'D'
+		&& game->d != 'u')
 		dis[1] = abs(e_x - game->x) + abs(e_y + 1 - game->y);
-	if (game->map[e_y][e_x + 1] != '1' && game->map[e_y][e_x + 1] != 'D' && game->d != 'l')
+	if (game->map[e_y][e_x + 1] != '1' && game->map[e_y][e_x + 1] != 'D'
+		&& game->d != 'l')
 		dis[2] = abs(e_x + 1 - game->x) + abs(e_y - game->y);
-	if (game->map[e_y][e_x - 1] != '1' && game->map[e_y][e_x - 1] != 'D' && game->d != 'r')
+	if (game->map[e_y][e_x - 1] != '1' && game->map[e_y][e_x - 1] != 'D'
+		&& game->d != 'r')
 		dis[3] = abs(e_x - 1 - game->x) + abs(e_y - game->y);
-	move_ennemi(game, dis[0], dis[1], dis[2], dis[3]);
+	move_ennemi(game, dis);
 }

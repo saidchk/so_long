@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 18:04:48 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 21:29:23 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	key_press(int keycode, void *param)
 {
-	s_data	*game;
+	t_data	*game;
 
-	game = (s_data *)(param);
+	game = (t_data *)(param);
 	if (keycode == 13 || keycode == 126 || keycode == 1 || keycode == 125
 		|| keycode == 0 || keycode == 123 || keycode == 2 || keycode == 124)
 		game->keycode = keycode;
@@ -26,25 +26,28 @@ int	key_press(int keycode, void *param)
 	}
 	return (0);
 }
-void	put_door(s_data *game)
+
+void	put_door(t_data *game)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->image.exit,
 		game->x_exit * 37, game->y_exit * 37);
 	game->counter_of_food--;
 }
-void direction(s_data *game)
+
+void	direction(t_data *game)
 {
-		if (game->keycode == 13 || game->keycode == 126)
-			move_up(game);
-		else if (game->keycode == 1 || game->keycode == 125)
-			move_down(game);
-		else if (game->keycode == 0 || game->keycode == 123)
-			move_left(game);
-		else if (game->keycode == 2 || game->keycode == 124)
-			move_right(game);
-		put_pacman(game, 30000);
+	if (game->keycode == 13 || game->keycode == 126)
+		move_up(game);
+	else if (game->keycode == 1 || game->keycode == 125)
+		move_down(game);
+	else if (game->keycode == 0 || game->keycode == 123)
+		move_left(game);
+	else if (game->keycode == 2 || game->keycode == 124)
+		move_right(game);
+	put_pacman(game, 30000);
 }
-int	animation(s_data *game)
+
+int	animation(t_data *game)
 {
 	static int	i = 0;
 	static int	j = 0;
@@ -71,10 +74,9 @@ int	animation(s_data *game)
 	return (0);
 }
 
-
 int	main(int ac, char **av)
 {
-	s_data	game;
+	t_data	game;
 
 	if (ac != 2)
 		return (write(1, "please enter 1 arg\n", 19), 0);

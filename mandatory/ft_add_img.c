@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/05 23:46:04 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 22:43:49 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
 void	remove_traces(s_data *game, int keycode)
 {
 	if (game->counter.number_of_c == 0)
- 		put_door(game);
+		put_door(game);
 	if ((keycode == 0 || keycode == 123) && game->map[game->y][game->x
 		+ 1] != '.' && game->map[game->y][game->x + 1] != '1')
 	{
@@ -93,8 +92,6 @@ void	put_image(s_data *game)
 
 void	ft_add_img(s_data *game)
 {
-	
-
 	ft_load_image(game);
 	put_image(game);
 }

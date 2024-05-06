@@ -21,9 +21,10 @@ src_bonus = bonus/main_bonus.c\
 			bonus/load_image_bonus.c\
 			bonus/move_ghost_bonus.c\
 			bonus/player_moves_bonus.c\
-			bonus/check_map_bonus.c
+			bonus/check_map_bonus.c\
+			bonus/ft_calloc.c
 
-fsa= -fsanitize=address 
+fsa= -fsanitize=address -g
 NAME = so_long
 BONUS_NAME = so_long_bonus
 OBJ = $(src:.c=.o)
@@ -33,7 +34,7 @@ OBJ_BONUS = $(src_bonus:.c=.o)
 all : $(NAME)
 
 ${NAME} : ${OBJ} mandatory/so_long.h
-	${CC} ${FLAGS} ${OBJ} ${lib} ${FRAMEWORKSFLAGS} -o $@
+	${CC} ${FLAGS} ${OBJ} ${FRAMEWORKSFLAGS} -o $@
 
 %.o : %.c
 	$(CC) ${FLAGS} -c $< -o $@
@@ -41,7 +42,7 @@ ${NAME} : ${OBJ} mandatory/so_long.h
 bonus: ${BONUS_NAME} 
 
 $(BONUS_NAME) : $(OBJ_BONUS) bonus/so_long_bonus.h
-	${CC} ${FLAGS} $(OBJ_BONUS) $(fsa) ${lib} ${FRAMEWORKSFLAGS} -o $@ 
+	${CC} ${FLAGS} $(OBJ_BONUS) $(fsa) ${FRAMEWORKSFLAGS} -o $@ 
 
 %.o : %.c
 	${CC} ${FLAGS} $(fsa) -c $< -o $@

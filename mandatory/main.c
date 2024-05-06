@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 02:25:56 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 22:45:03 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,23 @@ int	key_press(int keycode, void *param)
 {
 	s_data	*game;
 
-	game = (s_data *) (param);
+	game = (s_data *)(param);
 	if (keycode == 13 || keycode == 126 || keycode == 1 || keycode == 125
 		|| keycode == 0 || keycode == 123 || keycode == 2 || keycode == 124)
 		game->keycode = keycode;
 	if (keycode == 53)
 		ft_free(game);
 	else if (keycode == 13 || keycode == 126)
-			move_up(game);
+		move_up(game);
 	else if (keycode == 1 || keycode == 125)
-			move_down(game);
+		move_down(game);
 	else if (keycode == 0 || keycode == 123)
-			move_left(game);
+		move_left(game);
 	else if (keycode == 2 || keycode == 124)
-			move_right(game);
+		move_right(game);
 	put_pacman(game);
 	return (0);
 }
-
 
 int	main(int ac, char **av)
 {
@@ -54,14 +53,14 @@ int	main(int ac, char **av)
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
 	{
-		write (1, "error\n", 6);
+		write(1, "error\n", 6);
 		return (ft_free(&game), 1);
 	}
 	game.window_ptr = mlx_new_window(game.mlx_ptr, game.weight_map * 37,
 			game.map_len * 37, "so_long");
 	if (!game.window_ptr)
 	{
-		write (1, "error\n", 6);
+		write(1, "error\n", 6);
 		ft_free(&game);
 	}
 	ft_add_img(&game);

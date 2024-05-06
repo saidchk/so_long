@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/05 23:38:08 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 22:44:58 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	put_number(int num)
 {
@@ -32,7 +31,7 @@ void	put_number(int num)
 }
 
 void	move_up(s_data *game)
-{	
+{
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y
 		- 1][game->x] == '1')
 		return ;
@@ -47,13 +46,11 @@ void	move_up(s_data *game)
 		put_number(game->number_moves);
 		write(1, "\n", 1);
 	}
-
 	remove_traces(game, game->keycode);
 }
 
 void	move_down(s_data *game)
-{	
-	
+{
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y
 		+ 1][game->x] == '1')
 		return ;
@@ -68,16 +65,14 @@ void	move_down(s_data *game)
 		put_number(game->number_moves);
 		write(1, "\n", 1);
 	}
-		 
 	remove_traces(game, game->keycode);
 }
 
 void	move_left(s_data *game)
-{	
+{
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
 		- 1] == '1')
 		return ;
-
 	if (game->map[game->y][game->x] == 'P')
 	{
 		if (game->map[game->y][game->x - 1] == '.')
@@ -89,18 +84,14 @@ void	move_left(s_data *game)
 		put_number(game->number_moves);
 		write(1, "\n", 1);
 	}
-	 
 	remove_traces(game, game->keycode);
 }
 
 void	move_right(s_data *game)
 {
-
-	
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
 		+ 1] == '1')
 		return ;
-	
 	if (game->map[game->y][game->x] == 'P')
 	{
 		if (game->map[game->y][game->x + 1] == '.')

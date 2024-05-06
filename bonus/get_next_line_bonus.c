@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 18:10:11 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 21:28:56 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ char	*one_line(char *array, int size_line)
 	return (row);
 }
 
-void	get_next_line(int fd, s_data *game)
+void	get_next_line(int fd, t_data *game, char *tab)
 {
-	char	tab[game->size_m];
 	int		size_line;
 	char	*head;
 	int		size_read;
@@ -56,8 +55,6 @@ void	get_next_line(int fd, s_data *game)
 	i = 0;
 	head = tab;
 	size_read = read(fd, tab, game->size_m);
-	if (size_read <= 0)
-		ft_free(game, -1);
 	tab[size_read] = 0;
 	while (i < game->map_len)
 	{
@@ -65,12 +62,12 @@ void	get_next_line(int fd, s_data *game)
 		if (game->weight_map != size_line || game->map_len == size_line)
 		{
 			write(1, "the map is not rectangular", 26);
-			ft_free(game, i -1);
+			ft_free(game, i - 1);
 		}
 		game->map[i] = one_line(head, size_line);
 		if (game->map[i++] == NULL)
-			ft_free(game, i-1);
+			ft_free(game, i - 1);
 		head += size_line + 1;
-
 	}
+	free(tab);
 }

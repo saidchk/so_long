@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_img_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 18:42:37 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 22:40:49 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-
-void	remove_traces(s_data *game, int keycode)
+void	remove_traces(t_data *game, int keycode)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
@@ -38,10 +37,10 @@ void	remove_traces(s_data *game, int keycode)
 	else if ((keycode == 1 || keycode == 125) && game->map[game->y - 1]
 		[game->x] != '.' && game->map[game->y - 1][game->x] != '1')
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-			game->image.black_wal, game->x * 37, (game->y - 1) * 37);
+		game->image.black_wal, game->x * 37, (game->y - 1) * 37);
 }
 
-void	ft_i(s_data *game, int keycode)
+void	ft_i(t_data *game, int keycode)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
@@ -67,7 +66,7 @@ void	ft_i(s_data *game, int keycode)
 	}
 }
 
-void	put_pacman(s_data *game, int keycode)
+void	put_pacman(t_data *game, int keycode)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
@@ -91,7 +90,7 @@ void	put_pacman(s_data *game, int keycode)
 		ft_free(game, game->map_len);
 }
 
-void	put_image(s_data *game)
+void	put_image(t_data *game)
 {
 	int	i;
 	int	j;
@@ -120,25 +119,25 @@ void	put_image(s_data *game)
 	}
 }
 
-void	ft_add_img(s_data *game)
+void	ft_add_img(t_data *game)
 {
 	int	w;
 	int	h;
 
-	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures1/door.xpm",
+	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr, "textures/door.xpm",
 			&w, &h);
 	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/wa.xpm", &w, &h);
+			"textures/wa.xpm", &w, &h);
 	game->image.ennemi_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/ghost_down2.xpm", &w, &h);
+			"textures/ghost_down2.xpm", &w, &h);
 	game->image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/collectible.xpm", &w, &h);
+			"textures/collectible.xpm", &w, &h);
 	game->image.pac_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_tr.xpm", &w, &h);
+			"textures/pac_tr.xpm", &w, &h);
 	game->image.pac_min_tr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_min_tr.xpm", &w, &h);
+			"textures/pac_min_tr.xpm", &w, &h);
 	game->image.pac_semi = mlx_xpm_file_to_image(game->mlx_ptr,
-			"textures1/pac_semi.xpm", &w, &h);
+			"textures/pac_semi.xpm", &w, &h);
 	ft_load_image(game);
 	put_image(game);
 }

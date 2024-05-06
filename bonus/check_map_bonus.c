@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 18:14:01 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/06 21:27:55 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_check_extension(char *file_name)
 	}
 }
 
-void	ft_is_closed(s_data *game)
+void	ft_is_closed(t_data *game)
 {
 	int	x;
 	int	y;
@@ -61,13 +61,12 @@ void	ft_is_closed(s_data *game)
 	}
 }
 
-
-void	flood_fill(s_data *game, int x, int y, int *count_exit)
+void	flood_fill(t_data *game, int x, int y, int *count_exit)
 {
 	if ((y < 0 || y >= game->map_len) || (x < 0 || x >= game->weight_map)
 		|| game->map[y][x] == 'k' || game->map[y][x] == '.'
-		|| game->map[y][x] == 'e' || 
-		game->map[y][x] == '1' || game->map[y][x] == 'D')
+		|| game->map[y][x] == 'e' || game->map[y][x] == '1'
+		|| game->map[y][x] == 'D')
 		return ;
 	else
 	{
@@ -90,9 +89,9 @@ void	flood_fill(s_data *game, int x, int y, int *count_exit)
 	}
 }
 
-void	check_map(char *map_name, s_data *game)
+void	check_map(char *map_name, t_data *game)
 {
-	int				count_exit;
+	int	count_exit;
 
 	game->counter.number_of_c = 0;
 	game->counter.number_of_e = 0;
