@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:43:49 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:10:22 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	remove_traces(s_data *game, int keycode)
+void	remove_traces(t_data *game, int keycode)
 {
 	if (game->counter.number_of_c == 0)
 		put_door(game);
@@ -40,7 +40,7 @@ void	remove_traces(s_data *game, int keycode)
 			game->image.black_wal, game->x * 37, (game->y - 1) * 37);
 }
 
-void	put_pacman(s_data *game)
+void	put_pacman(t_data *game)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
@@ -58,10 +58,10 @@ void	put_pacman(s_data *game)
 			game->image.pac_semi_down, game->x * 37, game->y * 37);
 	if (game->counter.number_of_c == 0 && game->x_exit == game->x
 		&& game->y_exit == game->y)
-		ft_free(game);
+		ft_free(game, game->map_len);
 }
 
-void	put_image(s_data *game)
+void	put_image(t_data *game)
 {
 	int	i;
 	int	j;
@@ -78,9 +78,6 @@ void	put_image(s_data *game)
 			else if (game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 					game->image.pac_semi_left, j * 37, i * 37);
-			else if (game->map[i][j] == 'D')
-				mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-					game->image.ennemi_ptr, j * 37, i * 37);
 			else if (game->map[i][j] == '.')
 				mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 					game->image.collectible_ptr, j * 37, i * 37);
@@ -90,7 +87,7 @@ void	put_image(s_data *game)
 	}
 }
 
-void	ft_add_img(s_data *game)
+void	ft_ran_img(t_data *game)
 {
 	ft_load_image(game);
 	put_image(game);

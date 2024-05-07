@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 21:51:35 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:44:03 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void					move_down_ennemi(t_data *game);
 void					ft_load_image(t_data *game);
 int						ft_close(t_data *game);
 void					*ft_calloc(size_t n, size_t size);
+void					set_null(t_img_adrr *ptr);
 
 #endif

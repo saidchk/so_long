@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 21:30:36 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:56:07 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_count_p_e_c(t_data *game, char tab, int len)
 {
+	if (tab != 'C' && tab != 'P' && tab != '0' && tab != 'E' && tab != '1' && tab != 'D')
+	{
+		write(1, "Error, not valid composed\n", 27);
+		exit(0);
+	}
 	if (tab == 'D')
 	{
 		game->ennemi.x_g = (game->size_m - 1) - (len * game->weight_map) - len;
@@ -51,8 +56,7 @@ int	count_len(int fd, t_data *game)
 		if (stop == 1)
 			game->weight_map++;
 		game->size_m++;
-		if (tab[0] == 'P' || tab[0] == 'C' || tab[0] == 'E' || tab[0] == 'D')
-			ft_count_p_e_c(game, tab[0], count);
+		ft_count_p_e_c(game, tab[0], count);
 	}
 	if (game->counter.number_of_c < 1 || game->counter.number_of_e != 1
 		|| game->counter.number_of_p != 1)
@@ -84,7 +88,7 @@ void	get_map(t_data *game, char *map_name)
 	if (fd == -1)
 	{
 		write(1, "error in file\n", 15);
-		exit(0);
+		ft_free(game, -2);
 	}
 	tab = malloc(game->size_m);
 	if (tab == NULL)

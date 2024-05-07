@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:44:58 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 01:50:12 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	put_number(int num)
 	}
 }
 
-void	move_up(s_data *game)
+void	move_up(t_data *game)
 {
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y
 		- 1][game->x] == '1')
@@ -49,7 +49,7 @@ void	move_up(s_data *game)
 	remove_traces(game, game->keycode);
 }
 
-void	move_down(s_data *game)
+void	move_down(t_data *game)
 {
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y
 		+ 1][game->x] == '1')
@@ -68,7 +68,7 @@ void	move_down(s_data *game)
 	remove_traces(game, game->keycode);
 }
 
-void	move_left(s_data *game)
+void	move_left(t_data *game)
 {
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
 		- 1] == '1')
@@ -87,7 +87,7 @@ void	move_left(s_data *game)
 	remove_traces(game, game->keycode);
 }
 
-void	move_right(s_data *game)
+void	move_right(t_data *game)
 {
 	if (game->map[game->y][game->x] == 'P' && game->map[game->y][game->x
 		+ 1] == '1')

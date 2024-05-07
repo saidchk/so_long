@@ -3,15 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   load_image_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 21:29:06 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:46:04 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
+void set_null(t_img_adrr *ptr)
+{
+	ptr->pac_semi  = NULL;
+	ptr->black_wal == NULL;
+	ptr->collectible_ptr == NULL;
+	ptr->pac_semi_down == NULL;
+	ptr->pac_semi_up == NULL;
+	ptr->pac_semi_right == NULL;
+	ptr->pac_semi_left == NULL;
+	ptr->wall_ptr == NULL;
+	ptr->pac_down == NULL;
+	ptr->pac_up == NULL;
+	ptr->pac_right == NULL;
+	ptr->pac_left == NULL;
+	ptr->ennemi_ptr == NULL;
+	ptr->player_ptr == NULL;
+	ptr->pac_tr == NULL;
+	ptr->pac_min_tr == NULL;
+	ptr->exit = NULL;
+}
 int	ft_check(t_img_adrr *ptr)
 {
 	if (!ptr->black_wal || !ptr->collectible_ptr || !ptr->ennemi_ptr
@@ -21,7 +41,22 @@ int	ft_check(t_img_adrr *ptr)
 		|| !ptr->wall_ptr || !ptr->pac_semi || !ptr->pac_tr || !ptr->pac_min_tr)
 	{
 		write(1, "error in loading image\n", 24);
-		return (-1);
+		free(ptr->black_wal);
+		free(ptr->collectible_ptr);
+		free(ptr->pac_semi_down);
+		free(ptr->pac_semi_up);
+		free(ptr->pac_semi_right);
+		free(ptr->pac_semi_left);
+		free(ptr->wall_ptr);
+		free(ptr->pac_down);
+		free(ptr->pac_up);
+		free(ptr->pac_right);
+		free(ptr->pac_left);
+		free(ptr->ennemi_ptr);
+		free(ptr->player_ptr);
+		free(ptr->pac_tr);
+		free(ptr->pac_min_tr);
+		return (free(ptr->exit), , -1);
 	}
 	return (1);
 }

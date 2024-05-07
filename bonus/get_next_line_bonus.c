@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 21:28:56 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 02:14:14 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	get_next_line(int fd, t_data *game, char *tab)
 	while (i < game->map_len)
 	{
 		size_line = ft_strlen(head);
-		if (game->weight_map != size_line || game->map_len == size_line)
+		if (game->weight_map != size_line)
 		{
-			write(1, "the map is not rectangular", 26);
+			write(1, "the map is not rectangular\n", 27);
 			ft_free(game, i - 1);
 		}
 		game->map[i] = one_line(head, size_line);

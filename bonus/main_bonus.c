@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 21:29:23 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:44:40 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (write(1, "please enter 1 arg\n", 19), 0);
+	set_null(&game.image);
 	game.keycode = 15645;
 	game.mlx_ptr = NULL;
 	game.window_ptr = NULL;

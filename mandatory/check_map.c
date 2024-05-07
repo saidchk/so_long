@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/05 23:34:59 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 16:08:35 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	ft_check_extension(char *file_name)
 	{
 		if (file_name[i--] != ext[j--])
 		{
-			write(1, "Error, the name of file is note true\n", 39);
+			write(1, "Error, the name of file\n", 25);
 			exit(EXIT_FAILURE);
 		}
 	}
 }
 
-void	ft_is_closed(s_data *game)
+void	ft_is_closed(t_data *game)
 {
 	int	x;
 	int	y;
@@ -49,8 +49,7 @@ void	ft_is_closed(s_data *game)
 				- 1] != '1')
 			{
 				write(1, "close the map\n", 14);
-				ft_free(game);
-				exit(EXIT_FAILURE);
+				ft_free(game, game->map_len);
 			}
 			if (y == 0 || y == game->map_len - 1)
 				x++;
@@ -61,13 +60,11 @@ void	ft_is_closed(s_data *game)
 	}
 }
 
-void	flood_fill(s_data *game, int x, int y)
+void	flood_fill(t_data *game, int x, int y)
 {
-	if ((y < 0 || y >= game->map_len) || (x < 0 || x >= game->weight_map)
+	if ((y <= 0 || y >= game->map_len) || (x <= 0 || x >= game->weight_map)
 		|| game->map[y][x] == 'k' || game->map[y][x] == '.'
-		|| game->map[y][x] == 'e' || (game->map[y][x] != '0'
-			&& game->map[y][x] != 'C' && game->map[y][x] != 'P'
-			&& game->map[y][x] != 'E'))
+		|| game->map[y][x] == 'e' || game->map[y][x] == '1')
 		return ;
 	else
 	{
@@ -90,7 +87,7 @@ void	flood_fill(s_data *game, int x, int y)
 	}
 }
 
-void	check_map(char *map_name, s_data *game)
+void	check_map(char *map_name, t_data *game)
 {
 	int	save_value;
 
@@ -108,8 +105,7 @@ void	check_map(char *map_name, s_data *game)
 	if (game->counter.number_of_c != 0 || game->counter.number_of_e != 0)
 	{
 		write(1, "not valide path\n", 16);
-		ft_free(game);
-		exit(EXIT_FAILURE);
+		ft_free(game, game->map_len);
 	}
 	game->counter.number_of_c = save_value;
 }

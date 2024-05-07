@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   load_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:43:16 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:41:12 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_check(s_img_adrr *ptr)
+void set_null(t_img_adrr *ptr)
+{
+	ptr->black_wal == NULL;
+	ptr->collectible_ptr == NULL;
+	ptr->pac_semi_down == NULL;
+	ptr->pac_semi_up == NULL;
+	ptr->pac_semi_right == NULL;
+	ptr->pac_semi_left == NULL;
+	ptr->wall_ptr == NULL;
+	ptr->exit = NULL;
+}
+int	ft_check(t_img_adrr *ptr)
 {
 	if (!ptr->black_wal || !ptr->collectible_ptr || !ptr->exit
 		|| !ptr->pac_semi_down || !ptr->pac_semi_left || !ptr->pac_semi_right
@@ -24,28 +35,29 @@ int	ft_check(s_img_adrr *ptr)
 	return (1);
 }
 
-void	ft_load_image(s_data *game)
+void	ft_load_image(t_data *game)
 {
 	int	w;
 	int	h;
 
+	set_null(&game->image);
 	game->image.exit = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/door.xpm", &w, &h);
+			"textures/door.xpm", &w, &h);
 	game->image.wall_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/wa.xpm", &w, &h);
+			"textures/wa.xpm", &w, &h);
 	game->image.collectible_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/collectible.xpm", &w, &h);
+			"textures/collectible.xpm", &w, &h);
 	game->image.pac_semi_left = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/pac_semi_left.xpm", &w, &h);
+			"textures/pac_semi_left.xpm", &w, &h);
 	game->image.pac_semi_right = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/pac_semi_right.xpm", &w,
+			"textures/pac_semi_right.xpm", &w,
 			&h);
 	game->image.pac_semi_down = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/pac_semi_down.xpm", &w, &h);
+			"textures/pac_semi_down.xpm", &w, &h);
 	game->image.pac_semi_up = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/pac_semi_up.xpm", &w, &h);
+			"textures/pac_semi_up.xpm", &w, &h);
 	game->image.black_wal = mlx_xpm_file_to_image(game->mlx_ptr,
-			"/Users/apple/Desktop/so_long/textures1/black_wal.xpm", &w, &h);
+			"textures/black_wal.xpm", &w, &h);
 	if (ft_check(&game->image) == -1)
-		ft_free(game);
+		ft_free(game, game->map_len);
 }
