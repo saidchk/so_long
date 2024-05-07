@@ -6,7 +6,7 @@
 /*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:01:24 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:30:15 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	move_up(t_data *game)
 	if (game->map[game->y - 1][game->x] == '.')
 		game->counter_of_food--;
 	game->map[game->y][game->x] = '0';
-	game->map[game->y - 1][game->x] = 'P';
+	//game->map[game->y - 1][game->x] = 'P';
 	game->number_moves++;
 	game->y--;
 	sprintf(num, "%d", game->number_moves);
@@ -58,7 +58,7 @@ void	move_down(t_data *game)
 	if (game->map[game->y + 1][game->x] == '.')
 		game->counter_of_food--;
 	game->map[game->y][game->x] = '0';
-	game->map[game->y + 1][game->x] = 'P';
+	//game->map[game->y + 1][game->x] = 'P';
 	game->number_moves++;
 	game->y++;
 	sprintf(num, "%d", game->number_moves);
@@ -86,7 +86,7 @@ void	move_left(t_data *game)
 	if (game->map[game->y][game->x - 1] == '.')
 		game->counter_of_food--;
 	game->map[game->y][game->x] = '0';
-	game->map[game->y][game->x - 1] = 'P';
+	//game->map[game->y][game->x - 1] = 'P';
 	game->number_moves++;
 	game->x--;
 	sprintf(num, "%d", game->number_moves);
@@ -114,7 +114,7 @@ void	move_right(t_data *game)
 	if (game->map[game->y][game->x + 1] == '.')
 		game->counter_of_food--;
 	game->map[game->y][game->x] = '0';
-	game->map[game->y][game->x + 1] = 'P';
+	//game->map[game->y][game->x + 1] = 'P';
 	game->number_moves++;
 	game->x++;
 	sprintf(num, "%d", game->number_moves);

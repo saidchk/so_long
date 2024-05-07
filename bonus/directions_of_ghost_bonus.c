@@ -6,7 +6,7 @@
 /*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:22:01 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:59:36 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_collision(t_data *game, int x, int y)
 {
 	if (game->map[game->ennemi.y_g][game->ennemi.x_g] == 'P'
-		|| game->map[game->ennemi.y_g + y][game->ennemi.x_g + x] == 'P')
+		/*|| game->map[game->ennemi.y_g + y][game->ennemi.x_g + x] == 'P'*/)
 	{
 		if (game->map[game->ennemi.y_g + y][game->ennemi.x_g + x] == 'P')
 			mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,

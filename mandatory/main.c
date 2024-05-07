@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 16:40:50 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 19:31:56 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,20 @@ int	main(int ac, char **av)
 	game.window_ptr = NULL;
 	game.number_moves = 0;
 	check_map(av[1], &game);
+	if (game.map_len > 38 || game.weight_map > 69)
+		return (write(1, "not valid size\n", 15), 
+			ft_free(&game, game.map_len), 0);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
-		return (write(1, "error in allocation\n", 21),
-		 ft_free(&game, game.map_len), 0);
+		return (write(1, "error in allocation\n", 21), ft_free(&game,
+				game.map_len), 0);
 	game.window_ptr = mlx_new_window(game.mlx_ptr, game.weight_map * 37,
 			game.map_len * 37, "so_long");
 	if (!game.window_ptr)
-	return (write(1, "error in allocation\n", 21),
-	 ft_free(&game, game.map_len), 0);
+		return (write(1, "error in allocation\n", 21), ft_free(&game,
+				game.map_len), 0);
 	ft_ran_img(&game);
 	mlx_hook(game.window_ptr, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.window_ptr, 17, (0L), ft_close, &game);
+	mlx_hook(game.window_ptr, 17, 0L, ft_close, &game);
 	mlx_loop(game.mlx_ptr);
 }

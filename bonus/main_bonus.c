@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 16:44:40 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 20:29:56 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	animation(t_data *game)
 	if (i == 2500)
 	{
 		direction(game);
+		game->map[game->y][game->x] = 'P';
 		i = 0;
 	}
 	else if (i == 450)
@@ -86,6 +87,9 @@ int	main(int ac, char **av)
 	game.window_ptr = NULL;
 	game.number_moves = 0;
 	check_map(av[1], &game);
+	if (game.map_len > 38 || game.weight_map > 69)
+		return (write(1, "not valid size\n", 15),
+			ft_free(&game, game.map_len), 0);
 	game.mlx_ptr = mlx_init();
 	if (game.mlx_ptr == NULL)
 		return (write(1, "error\n", 6), ft_free(&game, game.map_len), 1);

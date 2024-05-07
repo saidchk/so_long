@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 16:42:18 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 19:39:09 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	ft_free(t_data *game, int i)
 	free(game->map);
 	if (game->mlx_ptr != NULL && game->window_ptr != NULL)
 		mlx_destroy_window(game->mlx_ptr, game->window_ptr);
-		free(game->image.black_wal);
-		free(game->image.collectible_ptr);
-		free(game->image.exit);
-		free(game->image.pac_semi_down);
-		free(game->image.pac_semi_up);
-		free(game->image.pac_semi_right);
-		free(game->image.pac_semi_left);
-		free(game->image.wall_ptr);
+	free(game->image.black_wal);
+	free(game->image.collectible_ptr);
+	free(game->image.exit);
+	free(game->image.pac_semi_down);
+	free(game->image.pac_semi_up);
+	free(game->image.pac_semi_right);
+	free(game->image.pac_semi_left);
+	free(game->image.wall_ptr);
 	exit(1);
 }

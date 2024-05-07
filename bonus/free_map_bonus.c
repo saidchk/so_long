@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 16:48:53 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 18:21:38 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	ft_free(t_data *game, int i)
 	free(game->image.pac_tr);
 	free(game->image.pac_min_tr);
 	free(game->image.exit);
-	free(game->image.pac_semi)
+	free(game->image.pac_semi);
 	exit(1);
 }

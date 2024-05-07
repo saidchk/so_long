@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 16:40:27 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 19:35:19 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 # include <fcntl.h>
 # include <math.h>
-//# include <mlx.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//---------struct for load img----------//
 typedef struct img_addr
 {
-
 	void				*pac_semi_left;
 	void				*pac_semi_right;
 	void				*pac_semi_up;

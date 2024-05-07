@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 15:49:13 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 19:51:33 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_count_p_e_c(t_data *game, char tab, int len)
 {
-	if (tab != 'C' && tab != 'P' && tab != '0' && tab != 'E' && tab != '1')
+	if (tab != 'C' && tab != 'P' && tab != '0' && tab != 'E' && tab != '1'
+		&& tab != '\n')
 	{
 		write(1, "Error, not valid composed\n", 27);
 		exit(0);
@@ -85,7 +86,7 @@ void	get_map(t_data *game, char *map_name)
 		write(1, "error in file\n", 15);
 		ft_free(game, -2);
 	}
-	tab == malloc(game->size_m);
+	tab = malloc(game->size_m);
 	if (tab == NULL)
 		ft_free(game, -1);
 	get_next_line(fd, game, tab);

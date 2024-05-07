@@ -6,7 +6,7 @@
 /*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/06 22:40:49 by schakkou         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:23:28 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ void	remove_traces(t_data *game, int keycode)
 	else if ((keycode == 1 || keycode == 125) && game->map[game->y - 1]
 		[game->x] != '.' && game->map[game->y - 1][game->x] != '1')
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
-		game->image.black_wal, game->x * 37, (game->y - 1) * 37);
+			game->image.black_wal, game->x * 37, (game->y - 1) * 37);
 }
 
 void	ft_i(t_data *game, int keycode)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
+	if (game->map[game->y][game->x] == 'D')
+		end_animation(game);
 	if ((keycode == 0 || keycode == 123))
 	{
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
@@ -70,6 +72,8 @@ void	put_pacman(t_data *game, int keycode)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 		game->image.black_wal, game->x * 37, (game->y) * 37);
+	if (game->map[game->y][game->x] == 'D')
+		end_animation(game);
 	if (keycode == 0 || keycode == 123)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
 			game->image.pac_semi_left, game->x * 37, game->y * 37);

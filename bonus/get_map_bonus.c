@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: schakkou <schakkou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:38:44 by schakkou          #+#    #+#             */
-/*   Updated: 2024/05/07 15:56:07 by apple            ###   ########.fr       */
+/*   Updated: 2024/05/07 18:39:19 by schakkou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_count_p_e_c(t_data *game, char tab, int len)
 {
-	if (tab != 'C' && tab != 'P' && tab != '0' && tab != 'E' && tab != '1' && tab != 'D')
+	if (tab != 'C' && tab != 'P' && tab != '0' && 
+		tab != 'E' && tab != '1' && tab != 'D' && tab != '\n')
 	{
 		write(1, "Error, not valid composed\n", 27);
 		exit(0);
